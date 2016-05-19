@@ -1,8 +1,9 @@
-// just playing around with the basics...
-$(function() {
-  'use strict';
-
-// what we are using:
+//
+// Lesson 1:
+// This file exercises the basics of each of the objects we
+// will be working with.  We will explore a few gotchas, like
+// why JSON.stringify() is needed to persist objects to
+// localStorage.
 // -------------
 // $
 // localStorage
@@ -12,6 +13,10 @@ $(function() {
 // JSON
 //   .stringify()
 //   .parse()
+//
+//
+$(function() {
+  'use strict';
 
 
   // localStorage
