@@ -1,0 +1,11 @@
+- Update this to a better pattern for teaching:
+  - could be:
+    - start.html
+    - start.js
+    - end.html
+    - end.js
+  - or may need to use directories, since will likely have more than 2 files:
+    - /start
+    - /end
+
+- is /start and /end best named?  or /problem and /solution?
