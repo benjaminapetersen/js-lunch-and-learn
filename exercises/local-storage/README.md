@@ -37,6 +37,22 @@ future: could do the same thing in the world of angular:
 ## A trivial example:
 
 ```javascript
+// This file exercises the basics of each of the objects we
+// will be working with.  We will explore a few gotchas, like
+// why JSON.stringify() is needed to persist objects to
+// localStorage.
+// -------------
+// $
+// localStorage
+//   .setItem(id, data);
+//   .getItem(id);
+// setTimeout()
+// JSON
+//   .stringify()
+//   .parse()
+//
+//
+
 // use jQuery to ensure doc is ready
 $(function() {
   var obj = {name: 'bob', age: 24}
