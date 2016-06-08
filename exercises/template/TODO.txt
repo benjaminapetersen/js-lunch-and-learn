@@ -1,0 +1,13 @@
+## Template for lessons
+
+- start
+  - index.html
+  - dependencies
+- end
+  - index.html
+  - dependencies
+
+Or could use 'problem' and 'solution'.  essentially just need to setup the
+project to do in class so as not to waste time (unless project setup is valuable
+learning).  The 'end' should probably not be committed right away so as not to
+make it too easy.
