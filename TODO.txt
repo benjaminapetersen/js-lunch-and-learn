@@ -1,6 +1,0 @@
-- migrate over my gist files into a /lessons directory
-- figure out how to make each lesson (/local-storage) into a series
-	- wk1
-	- wk2
-	- wk3
-
