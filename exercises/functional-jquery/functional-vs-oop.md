@@ -21,14 +21,13 @@
     parent.appendChild(child);   
   };
 
-// TODO: need an export!
-window.foo = {}; // hash of functions....
+  // TODO: need an export!
+  window.foo = {}; // hash of functions....
 
-// test the above functions
-var span = create('span', 'this is a span!', 'shizzle_pop', 'snagglepuss');
-var h1 = find('h1');
-append(span, h1[0]);
-
+  // test the above functions
+  var span = create('span', 'this is a span!', 'shizzle_pop', 'snagglepuss');
+  var h1 = find('h1');
+  append(span, h1[0]);
 
 
 })(window);
