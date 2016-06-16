@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   'use strict';
 
   // data is an array of objects that look like this:
@@ -21,29 +21,50 @@
     return person;
   };
 
+  var displayPeople = function() {
+    var $peopleList = $('#peopleList');
+    $peopleList.empty();
 
-  // this will be our list of people
-  var people = [];
+    $.each(people, function(index, value) {
+      var facts;
+      $.each(value, function(key, value) {
+        facts += key + ": " + value + '<br />';
+      });
+      console.log($peopleList);
+      $peopleList.append('<li>'+facts+'</li>');
+    });
+  };
+
 
   // pick a key to save things to in localStorage
   var storageKey = 'people';
 
+  // this will be our list of people
+  var fromStorage = localStorage.getItem(storageKey);
+  var people = JSON.parse(fromStorage) || [];
+
+  if(people) {
+    console.log('render?', '');
+    displayPeople();
+  }
 
   // get the form with jQuery so we can do stuff with it
   var $form = $('form[name="person"]');
+  // optimize
+  var $firstInput = $('#firstName', $form);
 
   // do stuff when the form submits
   $form.submit(function(evt) {
+
     // stop the page reload, or anything, for that matter...
     evt.preventDefault();
 
     // now get the form data, BUT, will only get
     // inputs with a name="" attribute
     var data = $form.serializeArray();
-    console.log('form data', data);
+
     // transform.
     var person = makePerson(data);
-    console.log('make person', person);
 
     // add this person to our list of people.
     people.push(person);
@@ -52,10 +73,17 @@
     // [object Object] into localStorage, and that means
     // all of our data is lost :(
     var toSave = JSON.stringify(people);
-    console.log('stringify to save', toSave);
 
     // now save them!
     localStorage.setItem(storageKey, toSave);
+    this.reset();
+
+    // $(this)
+        // .find('input')
+        // .first()
+        // .focus();
+    $firstInput.focus();
+    displayPeople();
   });
 
-})();
+});
