@@ -97,22 +97,48 @@
       </div>
     </div>
 
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="delete-confirm">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Are you sure?</h3>
+          </div>
+          <div class="modal-body">
+            Delete this person!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-cancel">Nope</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal-confirm">Yup</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
     <!-- ideally can query for a template String & process it via javascript -->
     <script type="html/tpl" id="personTpl">
-      <div class="row person-{index}">
+      <div class="row person-index-{index} person-id-{id}">
         <div class="col-sm-9">
           <div>{firstName} {lastName}</div>
           <div>age: {age}</div>
           <div>Email: {email}</div>
+          <div class="small muted">id: {id}</div>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="edit" data-index="{index}">edit</a>
-          <a href="#" class="delete" data-index="{index}">delete</a>
+          <a href="#" class="edit" data-index="{index}" data-id="{id}">edit</a>
+          <a href="#" class="delete" data-index="{index}" data-id="{id}">delete</a>
         </div>
         <div class="col-sm-12"><hr /></div>
       </div>
     </script>
+
+
     <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js" /></script>
     <script src="./scripts/app.js"></script>
   </body>
 </html>
