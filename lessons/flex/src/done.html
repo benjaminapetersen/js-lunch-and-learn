@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../bower_components/pure/pure.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../bower_components/layout.attrs/dist/layout.attrs.css" media="screen" title="no title" charset="utf-8">
+    <style>
+    html,
+    body {
+      height: 100%;
+    }
+    /* skin */
+    #header,
+    #footer {
+      background: #000;
+      color: #fff;
+    }
+    #footer {
+
+    }
+    .pad-sm {
+      padding: 2px 4px;
+    }
+    .pad-md {
+      padding: 4px 8px;
+    }
+    .pad-lg {
+      padding: 5px 10px;
+    }
+    </style>
+  </head>
+  <body ng-controller="ctrl">
+
+    <div column fit outline>
+
+      <div id="header">
+        <h1>heading</h1>
+      </div>
+
+      <div flex row height-max outline>
+        <div column grow="2" height-max outline>
+          <div
+            ng-repeat="item in sidebar"
+            row outline
+            class="pad-lg">
+            <span class="pad-sm">{{$index}}</span>
+            <span class="pad-sm">
+              <a href="{{item.src}}">{{item.name}}</a>
+            </span>
+          </div>
+        </div>
+        <div column flex grow="10" height-max outline>
+            <div class="pad-lg">
+              <h2>Sub-heading</h2>
+              <div>
+                <p>
+                  <strong>Content area: benefits of flex</strong>
+                </p>
+                <ul>
+                  <li>similar to traditional app layout rendering, a lot more powerful under the hood</li>
+                  <li>Doesn't break. grow/shrink properties handle math for you, unlike floats</li>
+                  <li>layout.attrs pushes for declaring the 'scaffold' in the markup and the 'paint job' in the css classes,
+                      which is a nice separation of concerns.  You can look in the markup to understand the structure, and
+                      look to the classes to understand the skin/theme/look and feel.  but you dont have to have both
+                      html & css open & be interpreting both at the same time to understand it all together</li>
+                  <li>
+                    <ul>
+                      <li>breakdown:</li>
+                      <li>JS is for behavior</li>
+                      <li>html is for structure (and semantics, screen reader stuff, etc)</li>
+                      <li>css is for look & feel</li>
+                      <li>html becomes the throw away, treat all "code" as code. JS & CSS are highly important, html is where you "snap" the parts together</li>
+                      <li>this will prob continue to be the flow as there is more of a move to adopt web components, which angular directive, ember components, polymer, etc all are driving toward </li>
+                    </ul>
+                  </li>
+                </ul>
+          </div>
+        </div>
+      </div>
+      <div id="footer" row>
+        c 1998 awesomeness
+      </div>
+    </div>
+
+    <!-- for the convenience of ng-repeat, etc -->
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script>
+      angular
+        .module('demo', [])
+        .controller('ctrl', [
+          '$scope',
+          function($scope) {
+            $scope.sidebar = [
+              { name: 'foo', src: '#'},
+              { name: 'bar', src: '#'},
+              { name: 'baz', src: '#'}
+            ];
+          }
+        ]);
+    </script>
+  </body>
+</html>
