@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.1",
+    "gulp-util": "^3.0.7",
     "gutil": "^1.6.4",
     "jasmine": "^2.5.0",
     "jshint": "^2.9.3",

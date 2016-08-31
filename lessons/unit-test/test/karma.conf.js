@@ -8,10 +8,10 @@ module.exports = function(config) {
     files: [
       // libs
       // src
-      'src/**/*.js',
+      'src/*.js',
       // test helpers
       // tests
-      'test/**/*.js'
+      'test/*.js'
     ],
     exclude: [],
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -23,14 +23,14 @@ module.exports = function(config) {
     colors: true,
     // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // browsers: ['Chrome', 'Firefox', 'IE'],
     browsers: ['Chrome'],
     browserNoActivityTimeout: 5000,
     // toggles continuous integration mode
     // if true, Karma captures browsers, runs the tests, then exits
-    singleRun: true,
+    singleRun: false,
     // limit how many browsers should be started simultaneous
     concurrency: Infinity
   });
