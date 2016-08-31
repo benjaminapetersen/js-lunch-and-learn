@@ -10,9 +10,14 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
     "gutil": "^1.6.4",
     "jasmine": "^2.5.0",
     "jshint": "^2.9.3",
-    "karma": "^1.2.0"
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-spec-reporter": "0.0.26"
   }
 }
