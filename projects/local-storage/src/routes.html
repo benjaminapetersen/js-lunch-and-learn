@@ -1,0 +1,128 @@
+<html>
+<head>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  <base href="">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>routes</h1>
+        <div>Menu</div>
+        <ul>
+          <li><a href="#!show-all">show all</a></li>
+          <li><a href="#!show">show nuthin'</a></li>
+          <li><a href="#!show/bill">show bill</a></li>
+          <li><a href="#!edit/bill">edit bill</a></li>
+          <li><a href="#!foo/bar">not found</a></li>
+        </ul>
+        <div class="well">
+          <div id="show-all">show all</div>
+          <div id="show">show one</div>
+          <div id="edit">edit</div>
+          <div id="not-found">Not found!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../bower_components/page/page.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js" /></script>
+  <script>
+
+    (function() {
+
+      var $showAll = $('#show-all'),
+          $show = $('#show'),
+          $edit = $('#edit'),
+          $notFound = $('#not-found'),
+          $all = [$showAll, $show, $edit, $notFound],
+          hideAll = function() {
+            $.each($all, function(index, node) {
+              node.hide();
+            });
+          };
+      // docs for page.js
+      // https://visionmedia.github.io/page.js/
+
+
+
+      // set the base to the subdirectory, since we got that src thing
+      // this will just make creating paths easier
+      $('base').attr('href', 'http://localhost:8000/src/routes.html');
+
+      // tell page about the base ase well, so it doesn't replace the 'src'
+      page.base('/src/routes.html');
+
+      // default route
+      page('/', function() {
+        console.log('hello world! the default route');
+        hideAll();
+        $showAll.show();
+      });
+
+      page('show-all', function() {
+        console.log('showing all the things', '');
+        hideAll();
+        $showAll.show();
+      });
+
+      page('show', function() {
+        hideAll();
+        $show.show();
+        console.log('show one', '');
+      });
+
+      // we will put more routes here
+
+
+      // the last catch all
+      page('*',function() {
+        hideAll();
+        $notFound.show();
+        console.log('ANGRY RAGE WHY MY ROUTES NOT WORK!?!?!?!');
+      });
+
+      // start the router
+      page({
+        hashbang: true
+      });
+
+      // page('show-all', function() {
+      //   console.log('show all', '');
+      //   hideAll();
+      //   $showAll.show();
+      // });
+      // page('show/:user', function(context) {
+      //   console.log('show', context.params.user);
+      //   hideAll();
+      //   $show.show();
+      // });
+      // page('edit/:user', function(context) {
+      //   console.log('edit', context.params.user);
+      //   hideAll();
+      //   $edit.show();
+      // });
+      // page('*', function() {
+      //   console.log('not found!', '');
+      //   hideAll();
+      //   $notFound.show();
+      // })
+      // // redirect
+      // page('shizzle', 'pop');
+      // start!
+
+
+      // use jQuery to navigate
+      // $('.view').click(function(e){
+      //   page('/user/12')
+      //   e.preventDefault()
+      // })
+
+    })();
+
+  </script>
+</body>
+</html>
