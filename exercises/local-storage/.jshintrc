@@ -1,8 +1,0 @@
-{
-  "globals": {
-    "jQuery": true,
-    "$": true,
-    "localStorage": true,
-    "setTimeout": true
-  }
-}
