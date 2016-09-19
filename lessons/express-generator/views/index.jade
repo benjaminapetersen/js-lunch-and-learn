@@ -1,0 +1,16 @@
+// Jade
+// https://naltatis.github.io/jade-syntax-docs/#comments
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  // for the links below, #users would be a fragment link as usual,
+  // useful for something like an angular app....
+  ul#nav
+    li
+      a(href="users") Users
+    li
+      a(href="todos") Todos
+    li
+     a(href="api") API (should not be viewable since this is how the app would ask for data..)

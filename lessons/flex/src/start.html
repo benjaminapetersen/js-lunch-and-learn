@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="demo">
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="../bower_components/pure/pure.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="../bower_components/layout.attrs/dist/layout.attrs.css" media="screen" title="no title" charset="utf-8">
+    <!-- pure is for a reset & some basic pretty fonts, forms, etc -->
+    <link rel="stylesheet" href="../bower_components/pure/pure.css">
+    <!-- base flex layout + the 2 optional modules for shorthand -->
+    <link rel="stylesheet" href="../bower_components/layout.attrs/dist/layout.attrs.css">
+    <link rel="stylesheet" href="../bower_components/layout.attrs/dist/modules/flex-axis-shorthand.css">
+    <link rel="stylesheet" href="../bower_components/layout.attrs/dist/modules/flex-resize.css">
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+    </style>
   </head>
-  <body>
+  <body ng-controller="ctrl">
 
-    <h1>A layout</h1>
 
+  <div>
+    hello world.
+  </div>
+
+
+  <!-- for the convenience of ng-repeat, etc -->
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+  <script>
+    angular
+      .module('demo', [])
+      .controller('ctrl', [
+        '$scope',
+        function($scope) {
+          console.log('hello world');
+          $scope.sidebar = [
+            { name: 'foo', src: '#'},
+            { name: 'bar', src: '#'},
+            { name: 'baz', src: '#'}
+          ];
+        }
+      ]);
+  </script>
   </body>
 </html>

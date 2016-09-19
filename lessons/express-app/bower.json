@@ -1,0 +1,17 @@
+{
+  "name": "express-app",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "benjaminapetersen <admin@benjaminapetersen.me>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/benjaminapetersen/js-lunch-and-learn",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
