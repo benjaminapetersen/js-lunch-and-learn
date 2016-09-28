@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>hello world</title>
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-controller="todoCtrl">
+
+
+    <!--
+      http://v4-alpha.getbootstrap.com/components/list-group/
+      http://bootsnipp.com/snippets/featured/todo-example
+    -->
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+        <div class="todolist not-done">
+        <h1>Todos</h1>
+        <input type="text" class="form-control add-todo" placeholder="Add todo">
+        <button id="checkAll" class="btn btn-success">
+          Mark all as done
+        </button>
+        <hr>
+        <ul id="sortable" class="list-unstyled">
+          <li class="ui-state-default">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" />Take out the trash
+              </label>
+            </div>
+          </li>
+          <li class="ui-state-default">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" />Buy bread
+              </label>
+            </div>
+          </li>
+          <li class="ui-state-default">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" />Teach penguins to fly
+              </label>
+            </div>
+          </li>
+        </ul>
+        <div class="todo-footer">
+          <strong><span class="count-todos"></span></strong> Items Left
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="todolist">
+        <h1>Already Done</h1>
+        <ul id="done-items" class="list-unstyled">
+          <li>
+            Some item
+            <button class="remove-item btn btn-default btn-xs pull-right">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+      angular
+        .module('todoApp', [
+
+        ])
+        .controller('todoCtrl', [
+          function() {
+            console.log('Hello world');
+            // TODO:
+            // 1. use $http service to ask for /api/todos
+            // 2. if successful, use the response list of todos to
+            //    create the HTML on the page, instead of a hard-coded list
+            // 3. add a few more todos to the mock_data/todos.js to ensure everthing
+            //    looks nice n stuff.
+          }
+        ]);
+    </script>
+  </body>
+</html>
