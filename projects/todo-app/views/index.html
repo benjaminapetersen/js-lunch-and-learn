@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>hello world</title>
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-controller="todoCtrl">
+
+
+    <!--
+      http://v4-alpha.getbootstrap.com/components/list-group/
+      http://bootsnipp.com/snippets/featured/todo-example
+    -->
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+            <div class="todolist not-done">
+            <h1>Todos</h1>
+            <input type="text" class="form-control add-todo" placeholder="Add todo">
+            <button id="checkAll" class="btn btn-success">
+              Mark all as done
+            </button>
+            <hr>
+            <ul id="sortable" class="list-unstyled">
+              <li class="ui-state-default">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" />Take out the trash
+                  </label>
+                </div>
+              </li>
+              <li class="ui-state-default">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" />Buy bread
+                  </label>
+                </div>
+              </li>
+              <li class="ui-state-default">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" />Teach penguins to fly
+                  </label>
+                </div>
+              </li>
+            </ul>
+            <div class="todo-footer">
+              <strong><span class="count-todos"></span></strong> Items Left
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="todolist">
+            <h1>Already Done</h1>
+            <ul id="done-items" class="list-unstyled">
+              <li>
+                Some item
+                <button class="remove-item btn btn-default btn-xs pull-right">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+      angular
+        .module('todoApp', [
+
+        ])
+        .controller('todoCtrl', [
+          '$http',
+          function($http) {
+            console.log('Hello world');
+
+
+            // TODO: make a service for urls!
+            var basePath = 'http://localhost:3001/',
+                todosPath = basePath + 'todos';
+
+
+            // TODO: make a service for todos.
+            $http
+              .get(todosPath)
+              .then(function(resp) {
+
+                // $scope.todos = resp.data;
+
+                console.log('Yay!', resp.data);
+              }, function(err) {
+                  console.log('Boo..', err);
+              });
+
+
+            $http
+              .post(todosPath, {
+                title: 'Some other thing to do',
+                description: 'Feed the dog',
+                complete: false,
+                metadata: {
+                  created_at: Date.now(),
+                  updated_at: Date.now()
+                }
+              })
+              .then(function(resp) {
+                console.log('created TODO', resp);
+              }, function(err) {
+                console.log('aw dang, didnt work', err);
+              });
+
+              // HOMEWORK
+              // - $http.updated todo #3
+              //    http://localhost:3001/todos/3
+              // - $http.delete todo #5 http://localhost:3001/todos/5
+              // if you get these working, then
+              //  - ng-repeat in the template above with the GET data
+              //  - try to get a "new todo" form working with the POST
+
+
+          }
+        ]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+# 2016 Oct 12
+
+https://expressjs.com/en/guide/database-integration.html
+- all kinds of DB integration
+
+https://github.com/Automattic/mongoose
+- mongoose
+
+https://zellwk.com/blog/crud-express-mongodb/
+- CRUD - CREATE heading
+  - will handle setting up a form & submission to express app
+- MongoDB heading
+  - installing and setup mongodb
+  - hmm. putting db in cloud. meh.
+
+https://www.airpair.com/javascript/complete-expressjs-nodejs-mongodb-crud-skeleton
+CLI for mongodb
+
+$ brew update
+$ brew install mongodb
+
+# fire up the mongo terminal
+$ mongo
+
+# NOPE, do this:
+# (if no brew services, install with `brew tap gapple/services`)
+$ brew services start mongodb
+$ brew services stop mongodb
