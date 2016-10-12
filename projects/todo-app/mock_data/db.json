@@ -1,0 +1,76 @@
+{
+  "todos": [
+    {
+      "title": "This is a task",
+      "description": "This is a description",
+      "complete": false,
+      "id": 1,
+      "metadata": {
+        "created_at": "",
+        "updated_at": ""
+      }
+    },
+    {
+      "title": "Some other thing to do",
+      "description": "Feed the dog",
+      "complete": false,
+      "metadata": {
+        "created_at": 1476291774073,
+        "updated_at": 1476291774073
+      },
+      "id": 2
+    },
+    {
+      "title": "Some other thing to do",
+      "description": "Feed the dog",
+      "complete": false,
+      "metadata": {
+        "created_at": 1476291783464,
+        "updated_at": 1476291783464
+      },
+      "id": 3
+    },
+    {
+      "title": "Some other thing to do",
+      "description": "Feed the dog",
+      "complete": false,
+      "metadata": {
+        "created_at": 1476291788511,
+        "updated_at": 1476291788511
+      },
+      "id": 4
+    },
+    {
+      "title": "Some other thing to do",
+      "description": "Feed the dog",
+      "complete": false,
+      "metadata": {
+        "created_at": 1476291791788,
+        "updated_at": 1476291791788
+      },
+      "id": 5
+    }
+  ],
+  "users": [],
+  "posts": [
+    {
+      "title": "hello",
+      "author": "jack",
+      "id": 1
+    },
+    {
+      "title": "hello",
+      "author": "jack",
+      "id": 2
+    }
+  ],
+  "dinosaurs": [
+    {
+      "name": "TRex"
+    },
+    {
+      "name": "Brontosaurus"
+    }
+  ],
+  "kittens": []
+}
