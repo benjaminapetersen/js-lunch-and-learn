@@ -7,7 +7,8 @@
       "id": 1,
       "metadata": {
         "created_at": "",
-        "updated_at": ""
+        "updated_at": "",
+        "revision": 1
       }
     },
     {
@@ -16,7 +17,8 @@
       "complete": false,
       "metadata": {
         "created_at": 1476291774073,
-        "updated_at": 1476291774073
+        "updated_at": 1476291774073,
+        "revision": 1
       },
       "id": 2
     },
@@ -26,7 +28,8 @@
       "complete": false,
       "metadata": {
         "created_at": 1476291783464,
-        "updated_at": 1476291783464
+        "updated_at": 1476291783464,
+        "revision": 1
       },
       "id": 3
     },
@@ -36,7 +39,8 @@
       "complete": false,
       "metadata": {
         "created_at": 1476291788511,
-        "updated_at": 1476291788511
+        "updated_at": 1476291788511,
+        "revision": 1
       },
       "id": 4
     },
@@ -46,7 +50,8 @@
       "complete": false,
       "metadata": {
         "created_at": 1476291791788,
-        "updated_at": 1476291791788
+        "updated_at": 1476291791788,
+        "revision": 1
       },
       "id": 5
     }
@@ -56,20 +61,40 @@
     {
       "title": "hello",
       "author": "jack",
-      "id": 1
+      "id": 1,
+      "metadata": {
+        "created_at": 1476291791788,
+        "updated_at": 1476291791788,
+        "revision": 1
+      }
     },
     {
       "title": "hello",
       "author": "jack",
-      "id": 2
+      "id": 2,
+      "metadata": {
+        "created_at": 1476291791788,
+        "updated_at": 1476291791788,
+        "revision": 1
+      }
     }
   ],
   "dinosaurs": [
     {
-      "name": "TRex"
+      "name": "TRex",
+      "metadata": {
+        "created_at": 1476291791788,
+        "updated_at": 1476291791788,
+        "revision": 1
+      }
     },
     {
-      "name": "Brontosaurus"
+      "name": "Brontosaurus",
+      "metadata": {
+        "created_at": 1476291791788,
+        "updated_at": 1476291791788,
+        "revision": 1
+      }
     }
   ],
   "kittens": []
