@@ -4,6 +4,14 @@
 ### express getting started/generator
 - https:expressjs.com/en/starter/generator.html
 
+### running
+
+```bash
+npm start
+json-server --watch mock_data/db.json --port 3001
+```
+
+
 ### serve the app:
 - `npm start`
 - where "start" is defined in the package.json file

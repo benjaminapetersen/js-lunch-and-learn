@@ -1,0 +1,26 @@
+//
+//
+// $http
+//   .post(todosPath, {
+//     title: 'Some other thing to do',
+//     description: 'Feed the dog',
+//     complete: false,
+//     metadata: {
+//       created_at: Date.now(),
+//       updated_at: Date.now(),
+//       revision: 1
+//     }
+//   })
+//   .then(function(resp) {
+//     console.log('created TODO', resp);
+//   }, function(err) {
+//     console.log('aw dang, didnt work', err);
+//   });
+
+  // HOMEWORK
+  // - $http.updated todo #3
+  //    http://localhost:3001/todos/3
+  // - $http.delete todo #5 http://localhost:3001/todos/5
+  // if you get these working, then
+  //  - ng-repeat in the template above with the GET data
+  //  - try to get a "new todo" form working with the POST
