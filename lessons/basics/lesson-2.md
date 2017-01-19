@@ -200,7 +200,7 @@ let addOne = function addOne(num) {
 
 ### Calling functions
 
-The above examples are function definitions, but they do not call the function.  To call the function, use parens:
+The above examples are function definitions, but they do not call the function.  Execute a function with parens.  Calling a function will cause the function to do the work defined in the function body. Give it parameters (arguments) to change its behavior or output:
 
 ```javascript
 addOne(6);  // 7
@@ -209,9 +209,27 @@ addOne(8);  // 9
 ```
 
 
+
+
 That's it for today!  Except homework.  Let's write some functions:
 
-1.  Create an add function that will add 2 numbers together & return the value.
-2.  
+1.  Create an add function that will add 2 numbers together & return the value.  Call it 2-3 times with different values to ensure it works.
+2.  Create additional functions that perform some other basic math.  Be sure to call each one more than once, with different arguments.
+3.  Create a Red Hat email function that, when given a first name & last name, will return a Red Hat formatted email address:
+```javascript
+  redHatEmail('Ben', 'Petersen');  // bpeterse@redhat.com
+```
+This function uses strings.  Remember, strings are objects, so they will have properties and methods.  You will need to find a method that asks the `firstName` string to return just the first letter.  You will also need to find a method that asks the `lastName` string to return at most 7 letters.  Then, you will need to figure out how to connect multiple strings together.
+4.  Improve the previous function by allowing an optional domain name:
+```javascript
+  makeEmail('Ben', 'Petersen');  // bpeterse@redhat.com
+  makeEmail('Ben', 'Petersen', 'gmail'); // bpeterse@gmail.com
+```
+This will require looking up an `if/else` statement.  We have not covered this yet, but will next week.
+5.  Make a toCelsius function
+```javascript
+ toCelsius(75); // 23.8889
+```
+
 
 I recommend typing out both the function declaration and the function expression a couple times every day until it is natural to do so via muscle memory.
