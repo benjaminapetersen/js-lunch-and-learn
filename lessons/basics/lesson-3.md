@@ -246,9 +246,11 @@ greater(33, 22)     // '33 is greater than 22'
 5.  
 ```JavaScript
 // revise #1 to use a function that optionally takes 'am' and 'pm'
+// handle as many edge cases as possible
 timeOfDay(10)
 timeOfDay(10, 'am')
 timeOfDay(10, 'pm')
-
-
-``
+timeOfDay(92)
+timeOfDay('Jill')
+timeOfDay(undefined)
+```
