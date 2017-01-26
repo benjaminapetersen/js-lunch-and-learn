@@ -242,3 +242,13 @@ greater(22, 33)     // '33 is greater than 22'
 // should log the same regardless of the order of arguments provided:
 greater(33, 22)     // '33 is greater than 22'
 ```
+
+5.  
+```JavaScript
+// revise #1 to use a function that optionally takes 'am' and 'pm'
+timeOfDay(10)
+timeOfDay(10, 'am')
+timeOfDay(10, 'pm')
+
+
+``
