@@ -214,13 +214,16 @@ if(typeof a === 'number') {
 1.
 ```JavaScript
 let timeOfDay = 13;  // use 24 hour clock so don't have to deal with am & pm
-// write a conditional that logs "good morning", "good afternoon", "good evening" based on changing the number stored in time of day from 0 to 24.  If the number is above 24, handle that as well.
+// write a conditional that logs "good morning", "good afternoon", "good evening"
+// based on changing the number stored in time of day from 0 to 24.  If the number
+// is above 24, handle that as well.
 ```
 
 2.
 ```JavaScript
 let name = 'John Doe';
-// write a conditional that checks if name is your actual name. if so, log one message "<name> is the best name!" otherwise, log another "<name> eh, thats a fine name i guess".
+// write a conditional that checks if name is your actual name. if so, log one message
+// "<name> is the best name!" otherwise, log another "<name> eh, thats a fine name i guess".
 ```
 
 3.
