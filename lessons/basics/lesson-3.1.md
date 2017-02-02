@@ -229,28 +229,28 @@ let name = 'John Doe';
 3.
 ```JavaScript
 // wite a function that uses a conditional to greet based on the time of day (like #1)
-greet(9)          // good morning!
-greet(13)         // good afternoon!
-greet(20)         // good evening
+greet(9);          // good morning!
+greet(13);         // good afternoon!
+greet(20);         // good evening
 
 ```
 
 4.
 ```JavaScript
 // write a function that compares two numbers & logs which is greater
-greater(22, 33)     // '33 is greater than 22'
+greater(22, 33);     // '33 is greater than 22'
 // should log the same regardless of the order of arguments provided:
-greater(33, 22)     // '33 is greater than 22'
+greater(33, 22);     // '33 is greater than 22'
 ```
 
 5.  
 ```JavaScript
 // revise #1 to use a function that optionally takes 'am' and 'pm'
 // handle as many edge cases as possible
-timeOfDay(10)
-timeOfDay(10, 'am')
-timeOfDay(10, 'pm')
-timeOfDay(92)
-timeOfDay('Jill')
-timeOfDay(undefined)
+timeOfDay(10);
+timeOfDay(10, 'am');
+timeOfDay(10, 'pm');
+timeOfDay(92);
+timeOfDay('Jill');
+timeOfDay(undefined);
 ```
