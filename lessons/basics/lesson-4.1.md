@@ -42,7 +42,23 @@ let arr3 = [,,,4,,,,,,5,,,,,6];
 
 ```
 
-It is important to remember that in JavaScript, arrays are objects, and they have properties and methods, just like other objects.  So while arrays have nifty things like `array.lenght`, `array.push()`, `array.pop()`, etc, we are concerned today only with the fact that an array is a list of items that we can use in our loops.
+It is important to remember that in JavaScript, arrays are objects, and they have properties and methods, just like other objects.  So while arrays have nifty things like `array.length`, `array.push()`, `array.pop()`, etc, we are concerned today only with the fact that an array is a list of items that we can use in our loops.
+
+Aside, when programming, you will likely come across at least 2 styles: Object Oriented, and Functional.  Object oriented styles will likely make use of array methods directly:
+
+```JavaScript
+// Object oriented will "ask" the list object for what it wants.
+let list = [5,10,15,20,25];
+let firstLargerThanFifteen = list.find(function(item) { return item > 15; });
+```
+Functional, on the other hand, will likely treat the array as data and will use functions that act on the data:
+
+```JavaScript
+let list = [5,10,15,20,25];
+let firstLargerThanFifteen = _.find(list, function(item) { return item > 15; });
+```
+
+This is a simple, quick and dirty comparison, but it illustrates how an array can be treated as just data, or much, much more.
 
 Now, back to loops!
 
@@ -148,4 +164,4 @@ for(/* */) {
 }
 ```
 
-5. Come up with a reason to use a loop within a loop. 
+5. Come up with a reason to use a loop within a loop.
