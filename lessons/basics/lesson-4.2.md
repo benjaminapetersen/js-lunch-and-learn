@@ -94,6 +94,7 @@ for(prop in bob) {
   // ugh! annoying you have to add this, eh?
   // this is where a nice lib like lodash may give you helpers that
   // do things like this for you.
+  // In addition, having to call a function on each iteration will cause this loop to run much slower
   if(bob.hasOwnProperty(prop)) {
     console.log(bob[prop]);  
   }
@@ -159,6 +160,12 @@ Array.prototype.foo = 'bar';
 // while(i < arr.length) ?
 // do { } while(i < arr.length) ?
 ```
+
+In addition, properties on objects do not have an actual order.  Arrays have "slots" that will always
+iterate in consecutive order (unless you choose to iterate in reverse or otherwise).  Properties can  
+iterate randomly.
+
+In the future, we may discuss speed & optimization.  Some loops are faster than others.
 
 ## Homework
 
