@@ -144,7 +144,7 @@ let names = [
 makeEmails(names, 'gmail.com');  // should console.log() jill@gmail.com, etc
 ```
 
-3. Update the function again to take first name & last name arrays:
+4. Update the function again to take first name & last name arrays:
 ```JavaScript
 let names = [
   {firstName: 'jill', lastName: 'doe'},
@@ -156,7 +156,7 @@ let names = [
 makeEmails(names, 'gmail.com');  // should console.log() jill@gmail.com, etc
 ```
 
-4. Do any of the above, but take the loop out of the `makeEmail` function:
+5. Do any of the above, but take the loop out of the `makeEmail` function:
 ```JavaScript
 let names = [ /* names */];
 for(/* */) {
@@ -164,7 +164,7 @@ for(/* */) {
 }
 ```
 
-5. Come up with a reason to use a loop within a loop.
+6. Come up with a reason to use a loop within a loop.
 
 
 
