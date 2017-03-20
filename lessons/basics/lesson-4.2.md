@@ -169,12 +169,129 @@ In the future, we may discuss speed & optimization.  Some loops are faster than 
 
 ## Homework
 
-1.
+```bash
+# For the homework, choose a directory (perhaps near where you cloned this repo):
+mkdir ~/js-lunch-and-learn
+cd ~/js-lunch-and-learn
+mkdir homework
+cd homework
+touch lesson-4.2.js
+# then open lesson-4.2.js in whatever editor you want and paste the following:
+#  'use strict';
+#  (function() {
+#     // homework question 1 goes here.  copy this IIFE for each question
+#     // to ensure your answers don't collide.
+#     // feel free to ask me if this is confusing.
+#  })();
+#
+#
+# Now, you can run your file with node in the terminal:
+node ./lesson-4.2.homework.js
+# and it should print out anything you console.log();
+```
 
-2.
+```JavaScript
+// use the following data to work out the homework
+// an array
+let people = [
+  {firstName: 'jill', lastName: 'doe', age: 23},
+  {firstName: 'jane', lastName: 'doe', age: 32},
+  {firstName: 'jack', lastName: 'sparrow', age: 44},
+  {firstName: 'john', lastName: 'appleseed', 51}
+];
+// an object
+let otherPeople = {
+  jill: {firstName: 'jill', lastName: 'doe', age: 23}
+  jane: {firstName: 'jane', lastName: 'doe', age: 32},
+  jack: {firstName: 'jack', lastName: 'sparrow', age: 44},
+  john: {firstName: 'john', lastName: 'appleseed', 51}
+}
+```
 
-3.
+1. Create a list of first names using a `Do...While` loop:
 
-4.
+```JavaScript
+(function() {
 
-5.  
+  let firstNames = [];
+  do {
+    // update firstNames
+  } while ( /* condition to start/stop the loop */ );
+
+})();
+```
+<!-- ANSWER
+```JavaScript
+let i = 0;
+let firstNames = [];
+do {
+  firstNames.push(people[i].firstName);
+  i++
+} while(i < people.length);
+```
+-->
+
+2. Do the same thing, using only a `While` loop.
+
+```JavaScript
+// wrap each answer in an IIFE so they don't collide!
+(function() {
+
+  while( /* what conditions? */ ) {
+    // update your array
+  }
+
+})();
+// run your homework with:
+// node ./lesson-4.2.homework.js
+```
+
+3. Using any of the loops from this lesson, `console.log` ONLY the final count of the number of
+people in your list.  
+
+```JavaScript
+// OUTPUT:
+// There are <number> people in the list.
+```
+
+4. Using your preferred looping statement, `console.log` output two lists of first names, those at even indices, and those at odd.
+
+```JavaScript
+// OUTPUT:
+// The evens:
+//  'jill', 'jack'
+// The odds:
+//  'jane', 'john'
+```
+
+5. Using any of the looping statements, output `lastName, firstName` for each person in reverse order.
+
+6. Write or reuse your previous `makeEmail()` function, using both the people array `[]` and object `{}`.
+
+7. Write a looping function that will console log `lastName, firstName` for each person in the list, but
+will skip the first 2 names.  Then, make the `skip` be a number you change and pass the function as well.
+
+8. Write a `largest()` function that uses a loop to return the largest number in an array.
+
+```JavaScript
+var largest = largestNum([1,6,9,34,4,126,5])
+console.log(largest);   // 126
+
+// Bonus, do the same w/o individual arguments instead of an array, or ensure your function
+// can handle either:
+var largest = largestNum(1,6,9,34,4,126,5);
+console.log(largest);  // 126
+```
+9. Write a function that uses a loop to iterate numbers from 0 to a max number (you provide).  For multiples of 3 it should log `Fizz`, for multiples of 5 it should log `buzz`, for both multiples of 3 and 5 it should log `FizzBuzz`
+
+```JavaScript
+// This is a bit of an old school problem, try not to google it!
+fizzBuzz(100);
+// 3, Fizz
+// 5, Buzz
+// 9, Fizz
+// 10, Buzz
+// 12, Fizz
+// 15, FizzBuzz
+// etc.
+```
