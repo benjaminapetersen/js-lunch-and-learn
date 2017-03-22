@@ -4,10 +4,10 @@ MDN on [loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 
 Lesson 4.1 covered the basics of a loop & the `for` loop.  If you can get the `for` loop down, you have what you need to work with the other loops.  Fundamentally they do the same thing, however with a different syntax or an extra feature.
 
-## Alternative for
+## Alternative for loops
 
 
-## Do...While
+### Do...While
 
 The `do...while` statement is the first variant of `while`.  It looks something like this:
 
@@ -41,7 +41,7 @@ do {
 } while (foo < 5);
 ```
 
-## While
+### While
 
 The plain `while` statement, on the other hand, may not execute at all.  It looks much more like a
 typical block statement:
@@ -63,7 +63,7 @@ while(foo < 3) {
 ```
 This loop is simple to reason about & easy to use, just be sure that it is not infinite!
 
-## For...in
+### For...in
 
 `For...in` is better used to iterate over objects than arrays.  It lets you use a temporary variable
 for all of the objects property NAMES (NAMES here is key, it is not the objects values):
@@ -113,7 +113,7 @@ for(prop in list) {
 
 ```
 
-## For...of
+### For...of
 
 `For...of` iterates over iterable objects like Array, Map, Set and the arguments object. It iterates not over the NAMES, but the VALUES.  See the difference here:
 
@@ -135,7 +135,7 @@ for (let i of arr) {
 
 ```
 
-## A Few Gotchas
+### A Few Gotchas
 
 With any of the loops, doing strange things with the array of data you are going
 to loop can cause unexpected results:
