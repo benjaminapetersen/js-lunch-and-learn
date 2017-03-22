@@ -201,7 +201,7 @@ let people = [
 ];
 // an object
 let otherPeople = {
-  jill: {firstName: 'jill', lastName: 'doe', age: 23}
+  jill: {firstName: 'jill', lastName: 'doe', age: 23},
   jane: {firstName: 'jane', lastName: 'doe', age: 32},
   jack: {firstName: 'jack', lastName: 'sparrow', age: 44},
   john: {firstName: 'john', lastName: 'appleseed', 51}
