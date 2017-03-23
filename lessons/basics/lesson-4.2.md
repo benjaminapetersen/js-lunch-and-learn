@@ -197,15 +197,24 @@ let people = [
   {firstName: 'jill', lastName: 'doe', age: 23},
   {firstName: 'jane', lastName: 'doe', age: 32},
   {firstName: 'jack', lastName: 'sparrow', age: 44},
-  {firstName: 'john', lastName: 'appleseed', 51}
+  {firstName: 'john', lastName: 'appleseed', age: 51}
 ];
 // an object
 let otherPeople = {
   jill: {firstName: 'jill', lastName: 'doe', age: 23},
   jane: {firstName: 'jane', lastName: 'doe', age: 32},
   jack: {firstName: 'jack', lastName: 'sparrow', age: 44},
-  john: {firstName: 'john', lastName: 'appleseed', 51}
+  john: {firstName: 'john', lastName: 'appleseed', age: 51}
 }
+
+// wrap each answer in an IIFE so they don't collide!
+(function() {
+
+  while( /* what conditions? */ ) {
+    // update your array
+  }
+
+})();
 ```
 
 1. Create a list of first names using a `Do...While` loop:
@@ -232,19 +241,6 @@ do {
 -->
 
 2. Do the same thing, using only a `While` loop.
-
-```JavaScript
-// wrap each answer in an IIFE so they don't collide!
-(function() {
-
-  while( /* what conditions? */ ) {
-    // update your array
-  }
-
-})();
-// run your homework with:
-// node ./lesson-4.2.homework.js
-```
 
 3. Using any of the loops from this lesson, `console.log` ONLY the final count of the number of
 people in your list.  
@@ -277,7 +273,7 @@ will skip the first 2 names.  Then, make the `skip` be a number you change and p
 var largest = largestNum([1,6,9,34,4,126,5])
 console.log(largest);   // 126
 
-// Bonus, do the same w/o individual arguments instead of an array, or ensure your function
+// Bonus, do the same w/ individual arguments instead of an array, or ensure your function
 // can handle either:
 var largest = largestNum(1,6,9,34,4,126,5);
 console.log(largest);  // 126
