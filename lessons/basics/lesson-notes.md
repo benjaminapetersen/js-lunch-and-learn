@@ -1,4 +1,8 @@
-NOTES:
+## NOTES:
+
+Just a scratch sheet for jotting down items for future lessons before the lesson is written.
+
+<!--
 - Syntax for things. Get into functions:
   ```javascript
   let foo = function foo(a,b) { return c; };
@@ -23,3 +27,5 @@ came from this list:
 
 basics:
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Basics
+
+-->
