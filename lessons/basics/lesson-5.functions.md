@@ -116,6 +116,32 @@ console.log( callItOrReturnIt(function() { return 42;  }) );
 
 ```
 
+### The Arguments Object
+
+There is also a special object call the `arguments` object.  Every function has this object, but it is only useful in certain
+cases.  The `arguments` object is an "array-like" object that represents all of the arguments given to a function as a set.
+This is useful when you want a function to take arguments without limit:
+
+```JavaScript
+let addAllArgs = function() {
+  // var args = Array.prototype.slice.call(arguments);
+  let args = [].slice.call(arguments);
+  let total = 0;
+  let i = 0;
+  for(i; i < args.length; i++) {
+    total = total + args[i];
+  }
+  return total;
+};
+
+addAllArgs(1,2);
+addAllArgs(5,7,9);
+addAllArgs(1,2,5,7,9, -1, 0 -49, 75);
+```
+
+### Functions as Arguments, Higher Order Functions
+
+
 Functions as arguments is a bit unique.  Functions are first class objects in JavaScript, which is what provides this capability.
 Higher Order Functions are what we can functions that take other functions as their arguments.  
 
@@ -168,6 +194,13 @@ to handle things like unexpected inputs (arguments).
 
 1. Create a function called `nth`.  It should take an array and a number, returning the item in the
 array at the index of the number.
+
+1.  Write a function called `average` that takes any number of arguments and returns the average of them.
+
+  ```JavaScript
+   // average(50,25) // 37.5
+   // average(50,25,10) // 28.33
+  ```
 
 1.  Create a function called `indexOf`.  It should take an array, and a second object.  It will loop the array to check and
 see if any of the items in the array match the second object.  If so, it returns the index (number) of that item.
