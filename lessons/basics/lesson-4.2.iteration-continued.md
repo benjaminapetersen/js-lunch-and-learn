@@ -75,7 +75,7 @@ var bob = {
 }
 
 for(prop in bob) {
-  console.log(bob[prop]);
+  console.log(bob[prop]);  // bob['name']
 }
 
 ```
@@ -124,13 +124,13 @@ arr.foo = 'hello';
 
 // the previous for...in
 // iterates over property NAMES
-for (let i in arr) {
-   console.log(i); // logs "0", "1", "2", "foo"
+for (let item in arr) {
+   console.log(item); // logs "0", "1", "2", "foo"
 }
 // the for...of
 // iterates over property VALUES
-for (let i of arr) {
-   console.log(i); // logs 3, 5, 7
+for (let item of arr) {
+   console.log(item); // logs 3, 5, 7
 }
 
 ```
@@ -229,16 +229,7 @@ let otherPeople = {
 
 })();
 ```
-<!-- ANSWER
-```JavaScript
-let i = 0;
-let firstNames = [];
-do {
-  firstNames.push(people[i].firstName);
-  i++
-} while(i < people.length);
-```
--->
+
 
 2. Do the same thing, using only a `While` loop.
 
@@ -262,7 +253,8 @@ people in your list.
 
 5. Using any of the looping statements, output `lastName, firstName` for each person in reverse order.
 
-6. Write or reuse your previous `makeEmail()` function, using both the people array `[]` and object `{}`.
+6. Write or reuse your previous `makeEmail()` function, using both the people array `[]` and object `{}`.  Console.log() an email for
+each person in the array, and each person in the object.
 
 7. Write a looping function that will console log `lastName, firstName` for each person in the list, but
 will skip the first 2 names.  Then, make the `skip` be a number you change and pass the function as well.
