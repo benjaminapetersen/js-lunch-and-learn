@@ -118,9 +118,10 @@ console.log( callItOrReturnIt(function() { return 42;  }) );
 
 ### The Arguments Object
 
-There is also a special object call the `arguments` object.  Every function has this object, but it is only useful in certain
-cases.  The `arguments` object is an "array-like" object that represents all of the arguments given to a function as a set.
-This is useful when you want a function to take arguments without limit:
+There is also a special object call the `arguments` object.  Every function has this object,
+but it is only useful in certain cases.  The `arguments` object is an "array-like" object
+that represents all of the arguments given to a function as a set. This is useful when you
+want a function to take arguments without limit:
 
 ```JavaScript
 let addAllArgs = function() {
