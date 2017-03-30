@@ -9,8 +9,9 @@ statements that perform some work, optionally return a value, and can be called 
 
 ## Defining
 
-We discussed functions briefly in [lesson 2](./lesson-2.md), briefly touching on function declarations and function expressions.
-A simple function definition looks like many of the other constructs we have already discussed:
+We discussed functions briefly in [lesson 2](./lesson-2.md), briefly touching on function declarations
+and function expressions. A simple function definition looks like many of the other constructs we
+have already discussed:
 
 ```JavaScript
 function(/* arguments */) {
@@ -34,8 +35,9 @@ function square(num) {
   return num * num;
 }
 ```
-The above function is named.  This is a divergence from the other statements we have discussed.  You don't name your loops, but
-you can optionally name your functions.  Unnamed functions are anonymous, and most useful when stored in a variable:
+The above function is named.  This is a divergence from the other statements we have discussed.  
+You don't name your loops, but you can optionally name your functions.  Unnamed functions are
+anonymous, and most useful when stored in a variable:
 
 ```JavaScript
 // an anonymous function, which is a function expression
@@ -57,11 +59,12 @@ let square = function square(num) {
 
 ## Calling functions
 
-There is a difference between defining a function and calling it. When you define a function, you are essentially grouping
-a set of actions in a way that allows them to easily be performed multiple times, possibly with different inputs (and thus
-producing a different output).
+There is a difference between defining a function and calling it. When you define a function,
+you are essentially grouping a set of actions in a way that allows them to easily be performed
+multiple times, possibly with different inputs (and thus producing a different output).
 
 Parens are used to execute/call a function:
+
 ```JavaScript
 square(4);
 ```
@@ -97,13 +100,28 @@ let square = function(num) { return num * num };
 What is function scope?  Basically it is:
 - The parent function, in which the called function has been declared
 - The window, or global scope, if the function has been declared as a top level function
-
+- We will go over scope in a touch more detail below
 
 ### Arguments
 
-Functions can take any object, even another function, as an argument.
+Functions can take any object, even another function, as an argument, and can take multiple arguments.
+Giving a function arguments is how you make it flexible. A good function can be called to do a
+certain set of work, but should be able to do that work with different data & respond with the
+correct output.  Hard coding data within a function often limits its usefulness.
 
 ```JavaScript
+var add = function(a, b) {
+  return a + b;
+}
+
+add(1,2); // 3;
+add(4,6); // 10 yay! reusable
+
+
+// a function can even take another function as an argument.
+// this is called a higher order function, we will go over these
+// in the future. It may seem a bit hard to grasp, but higher
+// order functions are things you use constantly in JS.
 var callItOrReturnIt = function(it) {
   return (typeof it === 'function') ?
     it() :
@@ -132,7 +150,7 @@ let addAllArgs = function() {
   for(i; i < args.length; i++) {
     total = total + args[i];
   }
-  return total;
+  return total;  // total should be the sum of all the args
 };
 
 addAllArgs(1,2);
@@ -140,34 +158,144 @@ addAllArgs(5,7,9);
 addAllArgs(1,2,5,7,9, -1, 0 -49, 75);
 ```
 
-### Functions as Arguments, Higher Order Functions
+### Scope vs context
+
+The scope and context of a function are the next two things we will hit.  Scope and context are
+not the same, but are often confused.  Here is the difference:
+
+- Scope is the variable access of a function
+  - it looks upward.  a function has access to:
+    - its own variables (inside the function)
+      - this is called `local scope`
+    - the variables "up the chain" in parent functions, all the way to the top (the window)
+    - variables on the window are called `global scope`
+    - (NOTE: es6 introduced `block scope`, through `let` and `const`, which means a variable
+    can be scoped to an `if`, `for`, or other "smaller" scope than a function)
+
+- the word `closure` comes into play here, it is related to scope
+  - a clojure is created when:
+    - a function is defined within another function
+    - the inner function is called, but uses variables from the outer function
+    - it is like a bubble around a bubble:
+    ```JavaScript
+
+      function foo() {
+        let a = 1;
+        let b = 2;
+        function bar() {
+          let c = a + b;
+        }
+        return bar;
+      }
+
+      let baz = foo(); // returns a bar.  foo is done now, yet the "bubble" it created with a & b remains.
+      baz();  // now we are calling bar, which still has access to the bubble that has a & b.
+    ```
+
+- Context is the value of the "this" keyword inside a function
+  - the "this" keyword points at the object that "owns" the currently executing code (function)
+  - "this" might be the function itself.  If it isn't the function, it is some object, ultimately
+    it can be the window object
+  - JavaScript is very flexible.  The "this" keyword can easy change depending on how you call a function.
 
 
-Functions as arguments is a bit unique.  Functions are first class objects in JavaScript, which is what provides this capability.
-Higher Order Functions are what we can functions that take other functions as their arguments.  
+### Context & 'this'
 
-So, lets make a few higher order functions, then pass functions as arguments:
+The [MDN for this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+
+Scope is fairly straightforward, as stated above.  But context changes. A function can be called in
+different contexts, affecting how it works & what the "this" keyword represents.
+
+- global context
+
+When a top level function is called (w/o strict mode), it is called with the global context (window)
+by default.
 
 ```JavaScript
+// when not in strict mode,
+// top level functions are bound to the window object,
+// which means that 'this' means 'window'.
+// this is essentially the same as writing:
+//   window.foo = function() {}
+function foo() {
+  return this;
+}
 
-// We could use _.each(), [].forEach, $.each() or any number of other iterator functions.  
-// Instead, lets make one.
-// We know how the above functions work, ours should act the same way.
+foo() === window; // true.   
 
-let each = function(arr, fn) {
-  let length = arr.length;
-  let i;
-  for(i = 0; i < length; i++) {
-    fn(arr[i], i, arr);
-  }
-};
-
-each([1,2,3], function(num) {
-  console.log(num * 2); // 2,4,6
-});  
+// OH! wait, except strict mode:
 
 ```
 
+- function context, strict mode
+
+When `strict mode` is applied, the above behavior is removed.  Unless `this` is given a context, it will
+have `undefined` as its context.  This will make more sense when we get into Contructors, call, apply, and bind.
+
+```JavaScript
+// in strict mode, functions don't automatically attach to the window.
+// this is exactly as above, it is a function in a global context, but
+// there isnt the strange behavior of automatically attaching to the window
+function foo() {
+  'use strict';
+  return this;
+}
+
+foo() === undefined // true.
+
+```
+
+- object method
+
+A function that is a method of another object will have that object as its context.  
+
+```JavaScript
+
+let obj = {
+  foo: function() {
+    return this;
+  },
+  bar: function() {
+    return this.foo(); // whoa, meta.
+  }
+};
+
+obj.foo() === obj // true. it returned 'this', which is the object, not the foo function.
+```
+
+- constructor
+
+A constructor is a function that acts like a "factory". It is used to create copies of objects, though
+when given arguments these objects can have unique properties.
+
+```JavaScript  
+// foo is an instance of a foo object: { }
+// it is not the same as the constructor Foo (function),
+// Foo is a factory for making objects.
+function Foo() {
+  return this;
+}
+
+new Foo() === Foo; // false. calling new Foo() returns a new object, in this case an empty object.
+
+
+function Bar(baz, shizzle) {
+  this.baz = baz;
+  this.shizzle = shizzle;
+}
+
+new Bar() === { baz: undefind, shizzle: undefind };
+new Bar(1, 'hello') === { baz: 1, shizzle: 'hello' };
+
+```
+
+There are a few more contexts, but we will go over them in a future session:
+- DOM event handler
+- in-line event handler
+- call, apply, bind
+  - these take a function & change its calling context (what!)
+- arrow functions
+  - these cannot change their calling context, even if the above call,apply, or bind are used.
 
 
 
@@ -181,6 +309,9 @@ be helpful:
 (function() {
   // Answer to Q1:
 })();
+
+// then run your homework:
+// $ node ./my-lesson-5-homework.js
 ```
 
 First, try to solve each problem as outlined.  If that comes easily, think about edge cases and update your functions
@@ -229,40 +360,10 @@ see if any of the items in the array match the second object.  If so, it returns
 exists in the array, and false if it does not. If you had trouble with the previous question, doing this one may help you
 answer both.
 
-1. We created our own `each()` function above.  It is the simplest iterator, all it does is cycle through an array calling
-    a provided function once for each item in the array, passing the item, the index, and the original array as the three
-    arguments.
-    Write your own version of `map`:
-    ```JavaScript
-    // map does a few things:
-    // - it takes 2 arguments:
-    //   - an array
-    //   - a callback function
-    // - it returns a new array
-    // - it calls the callback function once per iteration over the array with each of the following:
-    //   - the item for this current iteration
-    //   - the iterator index
-    //   - the original array (least used, but still provided)
-    let map;
+1. Create a function called `Person` that will be used as a constructor.  It should receive arguments
+such as name and age (and anything else you give it), and, when called with `new`, should return an
+object representing a person.
 
-    // call it:
-    // var doubled = map([1,2,3], function(num, i, arr) { return num * 2;  });
-    // be sure to test your fn a few other ways!
-    ```
-
-1.  Once you have `map` figured out, write a `find` function:
-
-  ```JavaScript
-    // find does the following:
-    // - it takes 2 arguments:
-    //   - an array
-    //   - a callback function
-    // - find returns one and only one object. It returns:
-    //   - the first object in the array that the callback returns `true` for.
-    let find;
-
-    // call it:
-    // var found = find(['dog', 'cat', 'duck', 'kitten'], function(item, i, arr) { return item === 'kitten'; });
-    // console.log(found);
-    // be sure to test your fn a few other ways!
-  ```
+1.  Add a `sayHello` method to your `Person` function above. When you create a `new Person()`, you should be able to
+call `person.sayHello()` and have the `sayHello` method return a string that is a greeting that includes information
+about the person.  For example, "Hi, my name is <name>.  I'm <age> old, and I like <favorite_food>".
