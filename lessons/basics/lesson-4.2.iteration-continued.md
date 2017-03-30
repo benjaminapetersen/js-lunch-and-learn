@@ -179,6 +179,7 @@ touch lesson-4.2.js
 # then open lesson-4.2.js in whatever editor you want and paste the following:
 #  'use strict';
 #  (function() {
+#     /* jshint esversion: 6 */
 #     // homework question 1 goes here.  copy this IIFE for each question
 #     // to ensure your answers don't collide.
 #     // feel free to ask me if this is confusing.

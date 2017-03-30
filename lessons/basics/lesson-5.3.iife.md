@@ -33,7 +33,14 @@ function() {
 // WHY? because the parens here are treated as grouping operators, not invokers.
 // This is a function declaration, and therefore the first ( following is an unexpected token... its not valid.
 // You need to transform the declaration into an expression for this to be valid.  How?
-// lots of ways:
+// lots of ways, using the same operators you can use on numbers:
+// on numbers:
+//   (1)   // 1
+//   +1    // 1
+//   -1    // -1
+//   ~1    // -1
+//   !1    // false
+// on functions:
 //   (function() { })();
 //   (function() {}());  // uh, same kinda?
 //   !function() {}();
