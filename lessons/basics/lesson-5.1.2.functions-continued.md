@@ -218,37 +218,7 @@ be helpful:
 // $ node ./my-lesson-5-homework.js
 ```
 
-First, try to solve each problem as outlined.  If that comes easily, think about edge cases and update your functions
-to handle things like unexpected inputs (arguments).
-
-1. Create a function called `larger`, it should take 2 arguments and return the larger.
-  BONUS: create a function called `largest`, it should return the largest of any number of arguments provided.
-
-1. Create a function `isVowel` that returns `true` if an argument is a vowel, and `false` if it is not.
-
-1. Create a function called `sum` that will take an array of numbers & return the total of all of those numbers added together.
-  BONUS: update `sum` to take either an array, or a set of individual arguments (`sum([1,2,3])` or `sum(1,2,3,4,6)`)
-
-1. Create a function called `reverse` that takes a string, and returns a reverse copy of the string.
-
-1. Create a function `longestWord` that takes an array of words and returns the number of characters in the longest word.
-
-1. Create a function `upcase` that takes a string & returns all words in the string in uppercase.
-
-  ```JavaScript
-    upcase('foo');  // Foo
-    upcase('foo bar baz');  // Foo Bar Baz
-  ```
-
-1. Create a function called `first`.  It should return the first item in a provided array.
-
-1. Create a function called `last`. It should return the last item in a provided array.
-
-1. Create a function called `nth`.  It should take an array and a number, returning the item in the
-array at the index of the number.
-
-1. Create a function called `initial` that takes an array and returns a new array of all EXCEPT the last item in
-the original array.
+First, try to solve each problem as outlined.  If that comes easily, think about edge cases and update your functions to handle things like unexpected inputs (arguments).
 
 1.  Write a function called `average` that takes any number of arguments and returns the average of them.
 
