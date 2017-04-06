@@ -15,4 +15,7 @@ var upperCase = function() {
   // 8. can we make this new array back into a string & return it?
 }
 
+upperCase('hi')                     // Hi
+upperCase('hi, my name is bob.')    // Hi, My Name Is Bob.
+upperCase(123);                     // do we care if the arg is wrong? 
 ```
