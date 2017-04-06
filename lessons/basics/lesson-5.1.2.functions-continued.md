@@ -44,13 +44,24 @@ that represents all of the arguments given to a function as a set. This is usefu
 want a function to take arguments without limit:
 
 ```JavaScript
+
+let someFunc = function(a, b) {
+  let first = arguments[0];  // or 'a'
+  let second = arguments[1]; // or 'b'
+  let fifth = arguments[4];  // would be "e", but we didn't go that far!
+  // etc. you can give ANY function as many arguments as you like,
+  // but if the function doesnt know how to handle them, then they
+  // will be ignored.
+}
+
+
 let addAllArgs = function() {
   // var args = Array.prototype.slice.call(arguments);
-  let args = [].slice.call(arguments);
+  let allArguments = [].slice.call(arguments);
   let total = 0;
   let i = 0;
-  for(i; i < args.length; i++) {
-    total = total + args[i];
+  for(i; i < allArguments.length; i++) {
+    total = total + allArguments[i];
   }
   return total;  // total should be the sum of all the args
 };
@@ -90,7 +101,16 @@ not the same, but are often confused.  Here is the difference:
         return bar;
       }
 
-      let baz = foo(); // returns a bar.  foo is done now, yet the "bubble" it created with a & b remains.
+      // calling foo() returns the function 'bar'
+      // foo executes & should vaporize... yet the variables
+      // it created, a and b, remain.  Why? it created a closure...
+      // essentially the "bubble" of the function lives on until
+      // nothing needs its variables anymore.  'a' and 'b' will be
+      // used inside of bar, they have references, so the "bubble"
+      // continues to exist until the returned function is called
+      // and the variables are no longer needed.  Then the bubble will
+      // pop and the closure will go away.  
+      let baz = foo();
       baz();  // now we are calling bar, which still has access to the bubble that has a & b.
     ```
 
@@ -101,7 +121,7 @@ not the same, but are often confused.  Here is the difference:
   - JavaScript is very flexible.  The "this" keyword can easy change depending on how you call a function.
 
 
-### Context & 'this'
+### Context & 'this' examples: a variety of contexts
 
 The [MDN for this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
@@ -186,20 +206,26 @@ function Bar(baz, shizzle) {
   this.shizzle = shizzle;
 }
 
-new Bar() === { baz: undefind, shizzle: undefind };
-new Bar(1, 'hello') === { baz: 1, shizzle: 'hello' };
+new Bar() === { baz: undefind, shizzle: undefind };   // true or false?
+new Bar(1, 'hello') === { baz: 1, shizzle: 'hello' }; // true or false?
 
 ```
 
 There are a few more contexts, but we will go over them in a future session:
-- DOM event handler
+- DOM event handler       (tentative, will be a while till we do DOM)
 - in-line event handler
-- call, apply, bind
+- call, apply, bind       (next week)
   - these take a function & change its calling context (what!)
-- arrow functions
+- arrow functions         (couple weeks from now)
   - these cannot change their calling context, even if the above call,apply, or bind are used.
 
 
+### Changing scope?
+
+Yup, you can change a function's scope.  Functions are objects, and as such, they
+have methods (functions have methods...? huh).  We will talk about these next
+week.  Some of these methods allow the functions to be called in a different
+context.  This is useful, and often confusing.
 
 
 ## Homework
@@ -225,6 +251,12 @@ First, try to solve each problem as outlined.  If that comes easily, think about
   ```JavaScript
    // average(50,25) // 37.5
    // average(50,25,10) // 28.33
+   // call it with lots of numbers!
+   // call it with an array of numbers, what then?
+   // call it with things other than numbers, what should it do?
+   // - is it ok to just error?
+   // - or should you make it specially handle these things?
+   // - sometimes an error is the right answer, give it some thought!
   ```
 
 1.  Create a function called `indexOf`.  It should take an array, and a second object.  It will loop the array to check and
@@ -241,3 +273,14 @@ object representing a person.
 1.  Add a `sayHello` method to your `Person` function above. When you create a `new Person()`, you should be able to
 call `person.sayHello()` and have the `sayHello` method return a string that is a greeting that includes information
 about the person.  For example, "Hi, my name is <name>.  I'm <age> old, and I like <favorite_food>".
+
+1. Now, update your say hello function so that this works:
+
+```JavaScript
+let bob = new Person('Bob', 12);
+let betty = new Person('Betty', 13);
+
+bob.sayHello();       // Hi, I'm Bob, I'm 12 years old.
+// if given a person as an argument, adjust the greeting:
+bob.sayHello(betty);  // Hi, Betty, I'm Bob!  I'm 12 years old, how are you?
+```
