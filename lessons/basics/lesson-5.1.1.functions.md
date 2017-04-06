@@ -147,10 +147,10 @@ First, try to solve each problem as outlined.  If that comes easily, think about
 
 1. Create a function `upcase` that takes a string & returns all words in the string in uppercase.
 
-  ```JavaScript
-    upcase('foo');  // Foo
-    upcase('foo bar baz');  // Foo Bar Baz
-  ```
+    ```JavaScript
+      upcase('foo');  // Foo
+      upcase('foo bar baz');  // Foo Bar Baz
+    ```
 
 1. Create a function called `first`.  It should return the first item in a provided array.
 
