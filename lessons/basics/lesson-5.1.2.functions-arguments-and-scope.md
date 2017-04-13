@@ -1,10 +1,7 @@
 
-What is function scope?  Basically it is:
-- The parent function, in which the called function has been declared
-- The window, or global scope, if the function has been declared as a top level function
-- We will go over scope in a touch more detail below
+# Function Arguments & Scope
 
-### Arguments
+## Arguments
 
 Functions can take any object, even another function, as an argument, and can take multiple arguments.
 Giving a function arguments is how you make it flexible. A good function can be called to do a
@@ -71,10 +68,19 @@ addAllArgs(5,7,9);
 addAllArgs(1,2,5,7,9, -1, 0 -49, 75);
 ```
 
+## Function Scope
+
+What is function scope?  Basically it is:
+- The parent function, in which the called function has been declared
+- The window, or global scope, if the function has been declared as a top level function
+- We will go over scope in a touch more detail below
+
+
 ### Scope and closure
 
-The scope and context of a function are two important concepts that sound similar, but are quite different.
-Lets talk about scope, we will save context for next week.  Here is a basic outline of scope:
+The scope and context of a function are two important concepts that sound similar,
+but are slightly different. Lets talk about scope, we will save context for next week.  
+Here is a basic outline of scope:
 
 - Scope is the variable access of a function
   - it looks upward.  a function has access to:
@@ -91,12 +97,15 @@ Lets talk about scope, we will save context for next week.  Here is a basic outl
     - the inner function is called, but uses variables from the outer function
     - it is like a bubble around a bubble:
     ```JavaScript
-
+      // scope A
       function foo() {
+        // scope B
         let a = 1;
         let b = 2;
         function bar() {
+          // scope C
           let c = a + b;
+          return c;
         }
         return bar;
       }
@@ -147,10 +156,19 @@ Lets talk about scope, we will save context for next week.  Here is a basic outl
       totalSodaCost(laCroixCost);
     ```
 
+For more on closures, here is the [MDN entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).  There are a
+few more terms that ride along with closure, such as `lexical scope`, or `static scope`.
+Try not to be afraid of these terms, so long as you get the idea that a function `scope`
+is everything within the function plus the variables in its parent(s), you will be fine.
+If the above MDN article doesn't do it for you, [Todd Motto has another post](https://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/) that
+may do the trick.
+
+
+
 
 ## Homework
 
-Hold on!  Since we split this weeks lesson in half, I'm updating the homework to reflect only the concepts we covered.
+Since this lesson was split in half, the homework is being modified.
 
 <!--
 
