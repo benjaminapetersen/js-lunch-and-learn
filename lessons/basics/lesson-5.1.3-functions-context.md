@@ -277,6 +277,13 @@ carSayHi(jane, jeff, jethro);
 // our talkingCar:
 carSayHi.call(bill); // nope, its still gonna be a part of talkingCar!
 carSayHi.apply(bill); // same
+
+// now, if we wanted to be sensible we could do this:
+talkingCar.sayHi = bill.sayHi.bind(talkingCar);
+
+// aha!
+bill.sayHi(talkingCar);
+talkingCar.sayHi(bill);
 ```
 
 There are a lot of applications for these functions, but admittedly they can be tricky.  Here
