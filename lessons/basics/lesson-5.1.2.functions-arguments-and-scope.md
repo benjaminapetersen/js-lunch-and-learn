@@ -163,7 +163,10 @@ is everything within the function plus the variables in its parent(s), you will 
 If the above MDN article doesn't do it for you, [Todd Motto has another post](https://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/) that
 may do the trick.
 
-
+In summary, a closure (remember, its a function!) does the following:
+- Uses a variable locally, even though that variable is defined in a parent scope
+- Essentially, it "remembers" the environment in which it was created & can keep using variables from that environment
+  - The "bubble" around it doesn't pop until the function is done with its work
 
 
 ## Homework
