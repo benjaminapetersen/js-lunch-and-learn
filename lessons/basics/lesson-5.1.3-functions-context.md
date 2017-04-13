@@ -400,5 +400,9 @@ jane.sayHi();  // hi!
 
 Nothing!  But...why?
 
-Scope & context are super helpful contexts to understand.  So are call, apply, and bind.  However, they
-are rather tricky
+Scope & context are super helpful contexts to understand.  So are call, apply, and bind.  
+That said, they are complicated, and can lead to some pretty convoluted code.  For now, I
+recommend avoiding the use of these functions. They are great for solving very specific
+problems, and great for making very confusing code.  
+
+But the more you know, the better you can debug, either your own code or someone else's &#128169;
