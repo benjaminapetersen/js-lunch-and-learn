@@ -249,9 +249,9 @@ bill.sayHi(jane);
 // and our talking car can still borrow the method, but has the opportunity to
 // also greet specific other named beings:
 // who! weird, we borrowed bill's sayHi method to have herbie say Hi to...bill?
-bill.sayHi.apply(talkingCar, bill);
+bill.sayHi.call(talkingCar, bill);
 // and again to talk to Jane
-bill.sayHi.apply(talkingCar, jane);  
+bill.sayHi.call(talkingCar, jane);  
 ```
 
 ### Apply
