@@ -1,5 +1,14 @@
 # Function context
 
+<!--
+  TODO:
+  - MDN link for context
+  - this has some helpful info:
+    - https://ryanmorr.com/understanding-scope-and-context-in-javascript/
+  - as does this:
+    - https://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/
+-->
+
 We went over scope last week.  Scope is essentially function based and can be summed up:
 
 - Scope is the variable access of a function
@@ -153,7 +162,7 @@ function Bar(baz, shizzle) {
   this.shizzle = shizzle;
 }
 
-new Bar() === { baz: undefind, shizzle: undefind };   // true or false?
+new Bar() === { baz: undefined, shizzle: undefined };   // true or false?
 new Bar(1, 'hello') === { baz: 1, shizzle: 'hello' }; // true or false?
 
 ```
