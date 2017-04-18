@@ -225,9 +225,9 @@ var talkingCar = {
 }
 
 // we can borrow sayHi from jane, or from Person
-jane.sayHi.apply(talkingCar); // Hi, my name is Herbie
+jane.sayHi.call(talkingCar); // Hi, my name is Herbie
 
-Person.prototype.sayHi.apply(talkingCar); // Hi, my name is Herbie
+Person.prototype.sayHi.call(talkingCar); // Hi, my name is Herbie
 
 ```
 
@@ -262,7 +262,7 @@ Apply is a sibling to call.  It lets you do the same thing, but with a subtle di
 // if we updated our sayHi function to be able to greet multiple people,
 // this is how it would look to call and apply the function:
 // call takes arguments individually:
-bill.sayHi.apply(talkingCar, jane, jeff, jethro);
+bill.sayHi.call(talkingCar, jane, jeff, jethro);
 // apply takes arguments as an array
 bill.sayHi.apply(talkingCar, [jane, jeff, jethro]);
 ```
@@ -275,7 +275,7 @@ the new object:
 
 
 ```JavaScript
-bill.sayHi.apply(talkingCar, jane, jeff, jethro);
+bill.sayHi.call(talkingCar, jane, jeff, jethro);
 bill.sayHi.apply(talkingCar, [jane, jeff, jethro]);
 var carSayHi = bill.sayHi.bind(talkingCar);
 // carSayHi is an entirely new function
