@@ -235,9 +235,9 @@ Now, lets say we want our `sayHi` to be able to greet a specific other person (o
 that has a name property):
 
 ```JavaScript
-Person.prototype.sayHi = function(objWithName) {
-  if(objWithName) {
-    return 'Hi, ' + objWithName.name + '. My name is ' + this.name;    
+Person.prototype.sayHi = function(obj) {
+  if(obj.name) {
+    return 'Hi, ' + obj.name + '. My name is ' + this.name;    
   }
   return 'Hi, my name is' + this.name;
 }
