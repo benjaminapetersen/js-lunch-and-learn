@@ -1,9 +1,4 @@
-<!--
-TODO:
-- what order should these be in?
-- how should it relate to
 
--->
 # Functions as objects
 
 Just like most other things in JavaScript, functions are objects.  All objects have
