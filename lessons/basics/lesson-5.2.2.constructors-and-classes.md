@@ -409,3 +409,5 @@ removes it.
 Note as well that you can make helper methods/functions.  Even though 'getClasses' may not
 be an exposed method, it might be very useful to you to have a function that will get the elements
 classList & .split(' ') it into an array (hint).
+
+And if you are REALLY struggling, here is your (cheat sheet)[http://youmightnotneedjquery.com/].  
