@@ -205,6 +205,16 @@ rather than a huge tree of inheritance (where you may not actually want everythi
 from a previous class).  
 
 ```JavaScript
+class Animal {
+
+}
+
+class Bird extends Animal {
+
+}
+```
+
+```JavaScript
 class Machine {
   constructor(name) {
     console.log('created ', name);
@@ -273,8 +283,40 @@ Vehicle.compare(car1, car2, moto);    // Honda Shadow is the fastest.
 Vehicle.compare([car1, car2, moto]);  // Volkswagon Beetle is the fastest.
 ```
 
-2.  Lets do something a little bit more real world and create our own mini version of jQuery.  Use
-the following template:
+2.  Lets do something a little bit more real world and create our own mini version of jQuery.  
+You have two options:
+
+- use this fiddle: [https://jsfiddle.net/hxm4smc1/668/](https://jsfiddle.net/hxm4smc1/668/)
+- or, create you own local HTML/CSS/JS files and use the following:
+
+```html
+<div class="item foo">1</div>
+<div class="item foo">2</div>
+<div class="item foo">3</div>
+<div class="item foo">4</div>
+<div class="item bar">5</div>
+<div class="item bar">6</div>
+```
+
+and this CSS:
+
+```css
+.item {
+  padding: 3px;
+  margin: 4px;
+  border: 3px solid blue;
+  width: 20px;
+  height: 20px;
+}
+
+.bar {
+  border: 3px solid green;
+}
+
+.baz {
+  border: 3px solid orange;
+}
+```
 
 ```JavaScript
 // here we have 2 classes & a selecting function to emulate how jQuery works
@@ -285,35 +327,62 @@ the following template:
 //    should be responsible for actually adding the class to the underlying node.
 
 // each element should be represented by an object like this:
+// for an individual element, do x
 class Element {
-  constructor(elem) {
-    this.elem = elem;
+  constructor(node) {
+    this.node = node;
   }
+  // this will do the actual work of changing class names on our element
+  addClass(className) {
+     if (this.node.classList) {
+       this.node.classList.add(className);
+     } else {
+       this.node.className += ' ' + className;
+     }
+  }
+  // now, make this work:
+  //removeClass() {}
 }
 
-// it is handy to be able to work with lists, so lets make a list class:
+// the ElementList class will basically JUST be responsible
+// for holding onto our list of HTML elements... it shouldn't
+// do "real work".  Instead, it should loop each element, and call
+// one of its methods for us.
 class ElementList {
-  constructor(elems) {
-    var elements = [];
-    elems.forEach(function(elem) {
-      elements.push(new Element(elem));
+  constructor(nodes) {
+    this.elements = nodes.map(function(node) {
+      // make all of the nodes into a Element using our Element constructor
+      return new Element(node);
     });
-    this.elements = elements;
   }
+
+  addClass(className) {
+    this.elements.forEach(function(element) {
+      // call our Element.addClass() for each node
+      element.addClass(className);
+    })
+  }
+  // now, make this work:
+  // removeClass() {}
 }
 
-// now, we have the `$` function that does our selecting:
-window.$ = function(selector) {
-  var nodes = document.querySelectorAll(selector);
-  return new ElementList(nodes);
-};
 
-// select (will return an elementList)
-var foo = $('.foo');
-// the elementList should be able to loop over
-// each of its elements & call the element's addClass() method.
-// (meaning the elementList should not add the classes directly!)
-foo.addClass('bar');
+// fake jQuery
+window.$ = function(selector) {
+  // querySelectorAll will go get all these elements from the HTML file for us
+  var nodeList = document.querySelectorAll(selector);
+  // but a NodeList isn't an array, so lets make it an array:
+  var nodes = [].slice.call(nodeList);
+  // then we can use our ElementList constructor & pass them along:
+	return new ElementList(nodes);
+}
+
+// now, lets test the .addClass method!
+$('.foo').addClass('baz');
+// now, make this work:
+// $('.foo').removeClass('foo');
+// or this:
+// $('.foo').addClass('baz').removeClass('bar');
 ```
 
 3.  Add some more of the typical jQuery methods to your classes:
@@ -326,7 +395,7 @@ foo.addClass('bar');
 - append
 - prepend
 - text
-- html 
+- html
 - on
 - off
 - find
