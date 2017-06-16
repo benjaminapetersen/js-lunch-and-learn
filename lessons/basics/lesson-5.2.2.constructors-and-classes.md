@@ -287,9 +287,10 @@ Vehicle.compare([car1, car2, moto]);  // Volkswagon Beetle is the fastest.
 You have two options:
 
 - Our jsFiddle where we figured out how to make the search:
-  [link to fiddle](https://jsfiddle.net/0e7q8xxj/)
+  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/)
 - A jsFiddle that has a "shell" that acts a bit more like jQuery, using classes:
-  [link to fiddle](https://jsfiddle.net/hxm4smc1/668/](https://jsfiddle.net/hxm4smc1/668/)
+  - [link to fiddle](https://jsfiddle.net/hxm4smc1/668/)
+  - [other fiddle](https://jsfiddle.net/hxm4smc1/668/)
 - Alternatively, you can create your own local `html`, `css`, and `javascript` files with
   code from the above fiddles, or use the following (or just start from scratch):
 
@@ -414,4 +415,4 @@ Note as well that you can make helper methods/functions.  Even though 'getClasse
 be an exposed method, it might be very useful to you to have a function that will get the elements
 classList & .split(' ') it into an array (hint).
 
-And if you are REALLY struggling, here is your (cheat sheet)[http://youmightnotneedjquery.com/].  
+And if you are REALLY struggling, here is your [cheat sheet](http://youmightnotneedjquery.com/).  
