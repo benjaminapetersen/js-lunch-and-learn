@@ -46,6 +46,7 @@ function() {
 //   !function() {}();
 //   +function() {}();
 //   ~function() {}();
+//   void function() {}();
 //   true && function() {}();
 //   var strange = function() {}();
 //   0, function() {}();
