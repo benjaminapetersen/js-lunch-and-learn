@@ -290,7 +290,6 @@ You have two options:
   - [link to fiddle](https://jsfiddle.net/0e7q8xxj/)
 - A jsFiddle that has a "shell" that acts a bit more like jQuery, using classes:
   - [link to fiddle](https://jsfiddle.net/hxm4smc1/668/)
-  - [other fiddle](https://jsfiddle.net/hxm4smc1/668/)
 - Alternatively, you can create your own local `html`, `css`, and `javascript` files with
   code from the above fiddles, or use the following (or just start from scratch):
 
