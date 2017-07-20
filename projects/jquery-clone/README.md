@@ -88,6 +88,21 @@ var find = function(selector) {
   var nodes; //
   return new ElementList(nodes); // return a new instance of your class
 }
-var $ = find; // jQuery alias 
+var $ = find; // jQuery alias
 
 ```
+
+#### Why chaining?
+
+Chaining is often thought of as a jQuery specific thing, but it is not.  Many of JavaScript's
+built-in objects support chaining, such as `String`, `Array`, etc.  
+
+Chaining just means that a method, when called, returns either `this` (a reference to the same
+exact object you are working with) or a new object of the same type (`Array.filter` returns a new
+`Array`, for example).  So long as the method returns something that acts exactly the same way (has
+the same functions/methods) you can "chain".
+
+(Actually, you can chain different types of objects as well, so long as you know what type of object
+is returned.  If I have a method called Array.foo() that returns a string, I can still chain it like
+this: `Array.map().foo().trim()` and call the `.trim()` method because I know what the new `returned`
+object is.)
