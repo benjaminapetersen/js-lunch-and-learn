@@ -291,6 +291,8 @@ You have two options:
 - Our second jsFiddle where we finished search (for now), and made a functional
   version of `.addClass()`
   - [link to fiddle](https://jsfiddle.net/0e7q8xxj/1/)
+- Our third jsFiddle, where we finish addClass, removeClass, show, hide, hasClass:
+  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/4/)
 - A jsFiddle that has a "shell" that acts a bit more like jQuery, using classes:
   - [link to fiddle](https://jsfiddle.net/hxm4smc1/668/)
 - Alternatively, you can create your own local `html`, `css`, and `javascript` files with
