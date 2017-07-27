@@ -295,6 +295,9 @@ You have two options:
   - [link to fiddle](https://jsfiddle.net/0e7q8xxj/4/)
 - A jsFiddle that has a "shell" that acts a bit more like jQuery, using classes:
   - [link to fiddle](https://jsfiddle.net/hxm4smc1/668/)
+- A jsFiddle that builds on our previous work, introducing an ElementList to act
+  like a jQuery object & provide the ability to chain methods.
+  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/9/)
 - Alternatively, you can create your own local `html`, `css`, and `javascript` files with
   code from the above fiddles, or use the following (or just start from scratch):
 
