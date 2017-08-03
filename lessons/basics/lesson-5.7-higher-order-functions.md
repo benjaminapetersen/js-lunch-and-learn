@@ -5,13 +5,107 @@ This is very common in JavaScript, you use them all the time!
 
 A few examples:
 
+- [Eloquent JavaScript on higher order functions](http://eloquentjavascript.net/05_higher_order.html)
+
+
+## Examples
+
+### forEach, each
+
 ```JavaScript
-// forEach is higher order, to do anything useful, you must give it another function.
-[].forEach(function() {
+// forEach is higher order function. Its job is to iterate, nothing more.  To do
+// anything useful, you must pass it another function responsible for the action work.
+// So why use a higher order function like .forEach() instead of a `for` or `while` loop?
+// Because it `abstracts` away the details of iteration, making your code more clear
+// and declarative.  Declarative is a word we use to describe code that states *what* it
+// wants to do, rather than *how* to do it.  Abstracting code hides away some of the *how*,
+// usually the noise that isn't actually relevant to the task you are attempting to accomplish.
+// For instance, a for loop:
+// for(var i=0; i<arr.length; i++) {
+//    do stuff with arr[i]
+// }
+// There is a TON of noise in a for loop that has nothing to do with your actual logic.
+// Now, consider .forEach():
+[].forEach(function(item, i) {
+  // do stuff
+});
+// or with a fat arrow fn:
+[].forEach((item, i) => {
 
 });
 
+// Much better! rather than messing with arr[i], you can use a variable `item` for
+// each iteration of the loop.  In addition, the function() {} allows you to declare
+// local variables, which is not possible in a for loop (until es6, which gives us `let`).
+//
+
 ```
+
+### map
+
+Map is an even better example. In order to create a new array from a previous array
+using a `for` loop, we have to do the following:
+
+```Javascript
+// our starter array:
+let arr = [1,2,3,4,5];
+
+// now, we can map:
+let newArr = [];
+for(var i=0; i<arr.length; i++) {
+  newArr[i] = (arr[i] * 2);
+}
+return newArr;
+
+// Thats noisy... we are responsible for declaring the new array, manually iterating,
+// making sure we don't accidentally change the iterator `i` which would cause us to
+// potentially miss an item in our array or WORSE, cause an infinite loop, etc.
+//
+// how about:
+let newArr = arr.map(function(item) {
+  return item * 2;
+});
+// fat arrow (can auto return *if* just one expression!):
+let newArr = arr.map((item) => {
+  item * 2;
+});
+// much more clear.  This code describes what it is doing to the reader.  It takes much
+// less time to digest, and it is much safer, it won't infinite loop, you can still
+// create local variables, etc.
+```
+
+### find
+
+Manually doing a find, vs using find. The job of `find` is to search through an array and
+find some item that matches
+
+```JavaScript
+// our starter array:
+let arr = [
+  {name: 'bob'},
+  {name: 'betty'},
+  {name: 'betsy'}
+];
+
+let found;
+for(var i=0; i<arr.length; i++) {
+  if(arr[i].name === 'betsy') {
+    found = arr[i];
+  }
+}
+// found will be an item, or it will be undefined
+
+// vs:
+arr.find(function(item) {
+  return item.name === 'betsy';
+});
+// fat arrow (can auto return *if* just one expression!):
+arr.find((item) => {
+  item.name === 'betsy';
+});
+
+```
+
 
 So, lets *make* a few of our own higher order functions, then pass functions as arguments:
 
@@ -29,12 +123,11 @@ let each = function(arr, fn) {
   }
 };
 
-each([1,2,3], function(num) {
+each([1,2,3], (num) => {
   console.log(num * 2); // 2,4,6
 });  
 
 ```
-
 
 
 
@@ -91,3 +184,24 @@ be helpful:
     // console.log(found);
     // be sure to test your fn a few other ways!
   ```
+
+2. Just like in [5.2.2](lesson-5.2.2.constructors-and-classes.md) we made a simple `jQuery` clone,
+lets collect our little set of iterators into a `lodash` clone.  Add to your `map` and `find`
+the following individual functions:
+
+- each
+- map
+- find
+- contains
+- first
+- last
+- size
+- filter
+- every
+- some
+- reduce  
+
+Then, collect them all under one global variable, `_` (or whatever you want to call your library).
+
+We will keep working towards having a small set of our own little tools (libs) that we can
+eventually use to build a simple app.  
