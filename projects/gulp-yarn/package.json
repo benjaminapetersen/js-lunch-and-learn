@@ -1,0 +1,16 @@
+{
+  "name": "gulp-yarn",
+  "version": "0.0.1",
+  "description": "A simple project setup using yarn and gulp",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.7.2",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "del": "^3.0.0",
+    "gulp-sass": "^3.1.0"
+  }
+}

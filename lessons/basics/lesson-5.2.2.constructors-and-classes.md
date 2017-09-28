@@ -286,18 +286,10 @@ Vehicle.compare([car1, car2, moto]);  // Volkswagon Beetle is the fastest.
 2.  Lets do something a little bit more real world and create our own mini version of jQuery.  
 You have two options:
 
-- Our jsFiddle where we figured out how to make the original search:
+- Our jsFiddle where we figured out how to make the search:
   - [link to fiddle](https://jsfiddle.net/0e7q8xxj/)
-- Our second jsFiddle where we finished search (for now), and made a functional
-  version of `.addClass()`
-  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/1/)
-- Our third jsFiddle, where we finish addClass, removeClass, show, hide, hasClass:
-  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/4/)
 - A jsFiddle that has a "shell" that acts a bit more like jQuery, using classes:
   - [link to fiddle](https://jsfiddle.net/hxm4smc1/668/)
-- A jsFiddle that builds on our previous work, introducing an ElementList to act
-  like a jQuery object & provide the ability to chain methods.
-  - [link to fiddle](https://jsfiddle.net/0e7q8xxj/9/)
 - Alternatively, you can create your own local `html`, `css`, and `javascript` files with
   code from the above fiddles, or use the following (or just start from scratch):
 
