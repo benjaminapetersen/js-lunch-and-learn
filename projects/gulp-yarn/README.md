@@ -263,3 +263,11 @@ gulp.task('sass', ['clean-dist'], () => {
 });
 
 ```
+
+
+Homework
+
+1. Add multiple SASS files & see if they properly compile
+1. Try adding autoprefixer to your sass task
+1. See if you can concatenate your output css into a single file!
+1. Give this tutorial a shot [Process & merge both SASS & LESS](https://ypereirareis.github.io/blog/2015/10/22/gulp-merge-less-sass-css/)
