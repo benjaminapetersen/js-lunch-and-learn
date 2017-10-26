@@ -22,169 +22,164 @@ better condition.
 
 ## Browserify
 
-Browserify is one of a number of tools that will trace imports.  An alternative called `webpack` is
-a bit more popular in the current environment, but is also know to be quite difficult to configure.
-An older tool called `require.js` does similar things.  Since we prefer to understand what our tools
-do, we will be using browserify in this tutorial.
+Browserify is one of a number of tools that will trace imports.  An alternative
+called `webpack` is a bit more popular in the current environment, but is also know
+to be quite difficult to configure. An older tool called `require.js` does similar
+things.  Since we prefer to understand what our tools do, we will be using browserify
+in this tutorial.
 
 Installation is easy, we drop it in just like all of our other dev packages:
 
 ```bash
+# NOTE: there is a plugin called gulp-browserify that simplifies things,
+# but it is deprecated.  Therefore we need 3 packages and will have to know
+# a bit more about plumbing than I would like, but it offers some insights into
+# the world of the file system and node.js
 yarn add browserify -dev
-# NOTE: we could use gulp-browserify, which makes things a bit slick,
-# this is similar to how grunt has tons of wrappers to glue things together.
-# the problem is, they get out of date (this one is deprecated).  All we need
-# is something to ensure the output of any node module is ready to get
-# sent into gulp's .pipe() function to string it into whatever else we
-# want to do.  To make that possible, we will use:
+# browserify returns a text stream.  gulp & other gulp plugins expect
+# a different kind of stream, so we will use this plugin to convert
 yarn add vinyl-source-stream -dev
-# vinyl-source-stream takes text inputs and returns a stream.
+# and certain plugins expect buffered file objects, so we need this plugin
+# to do a little bit more conversion.
+yarn add vinyl-buffer -dev
 ```
 
-Remind me about streams?  Follow the analogy of a stream or river.  Data
-is available even when it is not fully loaded, and can flow into the next
-pipe.  Practically, each `.pipe()` will fully process before it passes
-data along to the next function in a pipe, however, it does not have to
-write the output to a `tmp` file in between.  This is why we can easily
-chain a bunch of tasks together, such as processing sass, autoprefixing,
-concatenating, and minifying, all in one gulp function.
+### Streams
 
-Want some more info?  Here is a [good read](https://florian.ec/articles/gulp-js-streams/).
+The [Node.js API page](https://nodejs.org/api/stream.html) says that
+"Streams are an abstract interface for working with streaming data
+in Node.js".  Thats only somewhat helpful.  
 
-Now we will need to create a few JS files:
+[This article](https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93) is more helpful.  Essentially "streams are a
+collection of data--just like arrays or strings".  The big difference
+between a stream & an array or string, is that a stream *might* not
+be available at once.  It may not even entirely fit in memory!  This
+is a key feature, however.  For example, when we want to load &
+process many files in a large project, we want to know that we can
+process chunks at a time & that memory should not be a constraint.
+
+Streams also let us control inputs and outputs, or redirect & compose
+our code.  The analogy of water flowing like a river is correct.  Water
+can flow in various directions, branch off, and is never available in
+one place at one time.  
+
+In linux land, we `pipe` commands from one command to the next.  Our
+streams in `node.js` can also "flow" through pipes.
+
+Another advantage here is that we don't have to have a `/.tmp`
+directory to dump outputs between commands.  Since we can pipe one
+command into another, there is no need to repeatedly read then write
+files.
+
+### Gulp streams
+
+Ideally, streams would be abstract, a single idea of a stream, with
+no need to know whats actually inside it.  This is how I have always
+thought of streams, but it is unfortunately not entirely accurate (big
+surprise).  Gulp, as a task manager, has to work with at least a couple
+stream types:
+
+- file streams
+- text streams
+- buffer streams
+
+Gulp uses an intermediary called `vinyl` (which is maintained with
+gulp) to transform streams from one kind to another.  Unfortunately,
+when you get an error, it is not always obvious that the problem is
+just that you need to swap stream types.
+
+I'll borrow some pseudo-code form the above article to help illustrate:
+
+```javascript
+// a readable stream can be piped to a writable.
+// ie, load files, and then dump them out somewhere else.
+readableSrc.pipe(writableDest);
+
+// read file stream
+readableSrc
+  // change the file stream
+  .pipe(transformStream1)
+  .pipe(transformStream2)
+  // then write the file stream
+  .pipe(finalWrtitableDest)
+```
+
+### Back to Gulp...
+
+So, now that we know all the things about streams, lets use them. Knowing that gulp +
+the various plugins we use may expect a couple different kinds of streams, we should
+be able to pipe & transform our way to something useful.
+
+
+Load up our dependencies:
 
 ```JavaScript
-// main.js
+// gulpfile.js  
 'use strict';
-
-let add = require('./add.js');
-console.log('main.js', add(2,3)); // main.js 5
-```
-Now, we can test this quick using browserify directly:
-
-```bash
-# one thing to note:
-# to use browserify globally you must do:
-yarn global add browserify
-# otherwise, you will have to invoke browserify
-# from within  ./node_modules/browserify/
-browserify src/scripts/main.js > dist/bundle.js
+const gulp = require('gulp');
+const browserify = require('browserify');
+// many tuts call this 'source', but I'm calling it textStream per above discussion.
+const textToStream = require('vinyl-source-stream');
+// If file.isStream(), file.contents will be converted to a Buffer,
+// otherwise the file will passthrough.
+const streamToBuffer = require('vinyl-buffer');
 ```
 
-If all is well, you should be able to open `dist/bundle.js` and
-see your compiled JS. The next step is to use gulp to run browserify, because we want to be able setup a chain of tools.  Perhaps we will
-also minify our JavaScript files.
-
-Lets add browserify to our `gulpfile.js`:
+Then lets use them.  
 
 ```JavaScript
-// no gulp-browserify shim needed!
-// this is another advantage over grunt, which has
-// lots of shim libraries
-let browserify = require('browserify');
-```
 
-And add a script task, that will do what we just did manually:
-
-```JavaScript
 gulp.task('scripts', ['clean-dist'], () => {
-  // this is a little different of a chain as it doesn't start
-  // with gulp.src().  There is a `gulp-browserify` plugin you
-  // can use if you want to keep that uniformity
+  // tell browserify what file to start with, so it can
+  // follow all the require() and import statements &
+  // load up a file tree.
   return browserify({
-            // only the entry points
-            entries: 'src/scripts/main.js'
-          })
-          // make a bundled output
-          .bundle()
-          .pipe(
-            gulp.dest('./dist')
-          );
+          entries: './src/scripts/main.js',
+          debug: true
+        })
+        // then tell browserify to bundle it all up.
+        .bundle()
+        // now, lets turn this to a stream gulp usually uses
+        .pipe(textToStream('main.min.js'))
+        // so we can dump the built output as a single file
+        .pipe(gulp.dest('./dist'));
 });
 ```
 
-Lets make sure it picks up globals like `lodash` or `jquery`:
+Nice, that was pretty painless.  Now, lets add `uglify` to our flow.  Uglify
+expects `buffered` objects, so we can use `streamToBuffer` (vinyl-buffer) to  
+convert our stream before the transform:
 
-```bash
-yarn add lodash # no -dev flag, this is app code!
-```
-
-And lets add some lodash to our `main.js`:
 
 ```JavaScript
-'use strict';
+gulp.task('scripts', ['clean-dist'], () => {
+  return browserify({
+          entries: './src/scripts/main.js',
+          debug: true
+        })
+        .bundle()
+        .pipe(textToStream('main.min.js'))
+        // convert to a buffer for uglify
+        .pipe(streamToBuffer())
+        // then just pipe it through
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist'));  // Bet it will error!
+});
 
-let add = require('./add.js'),
-    _ = require('lodash');
+```
+But... we get an error.  Not because of something with streams, but because uglify
+doesn't know how to handle our es6!  How can we know that?  Well, a lot of plugins
+let you do this:
 
-console.log('main.js', add(2,3)); // main.js 5
-console.log(_.map([1,2,3], function(num, index, list) {
-  // get the next item, but if at the end, go back to beginning
-  let next = list[index + 1] || list[0];
-  // just make a map of added numbers
-  return num + next;
+```JavaScript
+// lets make sure that if we get an error we log it right away.
+// this will bubble up the es6 problem.
+.pipe(uglify().on('error', (e) => {
+  console.log(e);
 }));
-
 ```
 
-Now run:
-
-```bash
-gulp scripts
-```
-
-And if everything worked as intended, your `dist/main.js` should
-be a LOT larger, since it now includes `lodash` which it found in
-`node_modules`.
-
-The nice part about these `require()` statements is, similar to
-`gulp` vs `grunt`, we don't have to have separate complex configuration
-to ensure things are working.  The code itself drives the final output.
-Each file explicitly requires what it needs to do its
-work (this is good and standard in most other languages and environments),
-which makes it easy for `browserify` to track these dependencies &
-generate a good output.
-
-
-What if we wanted to add uglify?
-
-```bash
-yarn add uglify -dev
-```
-
-```JavaScript
-// import the module
-const uglify = require('gulp-uglify');
-// and add the pipe inside our script task:
-  .pipe(uglify())
-```
-
-
-
-
-
-<!--
-TODO: part 2: finish the build system
-- add autoprefixer
-- add concat
-- perhaps do all the homework, so can less & sass? why not...
-- add babel to transpile es6
-- add concat to build js into a single file
-- add serve  for src & dist
-  - ideally with watch as well
-  - use src maps to just load the /dest? not sure...
-- add others from this: http://blog.rangle.io/angular-gulp-bestpractices/
-- get to the point where we can start building the actual app!
-- NOTE:
-  - tag the repo at this point, so we can use this as a starting place for angular, react & vue.js
-  - ideally can build off the same base, in branches.
-
-TODO: part 3: angularJS (1.x) branch
-- https://github.com/toddmotto/angularjs-styleguide
-
-TODO: part 4: react branch
-
-TODO: part 5: vue.js branch
-
-TODO: part 6: angular (2.x) branch
--->
+So what now?  We will have to transpile our es6 to es5 before we can minify! This
+is a common thing to do anyway before we ship code to a browser.  Babel is
+complicated however, requiring a `.babelrc` file and plugins, so we will
+leave that for next time.
