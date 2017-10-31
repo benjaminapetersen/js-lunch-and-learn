@@ -10,10 +10,6 @@ const gulp = require('gulp'),
       streamToBuffer = require('vinyl-buffer'),
       uglify = require('gulp-uglify');
 
-// make a dummy task:
-gulp.task('my-task', () => {
-  console.log('This is my task! Wheee...');
-});
 
 gulp.task('clean-dist', () => {
   // lets do an array this time
@@ -52,4 +48,4 @@ gulp.task('scripts', ['clean-dist'], () => {
 });
 
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'scripts']);

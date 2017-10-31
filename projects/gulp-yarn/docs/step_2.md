@@ -104,6 +104,12 @@ readableSrc
   .pipe(finalWrtitableDest)
 ```
 
+## Gulp streams vs Node streams
+
+[This article](https://medium.com/gulpjs/gulp-sips-how-we-use-streams-d7790b22bf1a)
+on the gulp blog was written in an attempt to clarify some of the differences
+between a Gulp stream and a Node stream.  
+
 ### Back to Gulp...
 
 So, now that we know all the things about streams, lets use them. Knowing that gulp +
