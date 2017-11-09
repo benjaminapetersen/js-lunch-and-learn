@@ -1,7 +1,7 @@
 // gulpfile.js
 const gulp = require('gulp'),
       gutil = require('gutil'),
-      sass = require('gulp-sass'),
+      // sass = require('gulp-sass'),
       del = require('del'),
       babel = require('gulp-babel'),
       browserify = require('browserify'),
@@ -22,14 +22,14 @@ gulp.task('clean-dist', () => {
 
 // homework: convert sass to `css` and
 // add partials autoprefixer, less, minification...
-gulp.task('sass', ['clean-dist'], () => {
-  return gulp
-          .src('./src/styles/**/*.scss')
-          .pipe(sass())
-          .pipe(
-            gulp.dest('./dist/styles')
-          );
-});
+// gulp.task('sass', ['clean-dist'], () => {
+//   return gulp
+//           .src('./src/styles/**/*.scss')
+//           .pipe(sass())
+//           .pipe(
+//             gulp.dest('./dist')
+//           );
+// });
 
 gulp.task('scripts', ['clean-dist'], () => {
   return browserify({
@@ -47,5 +47,17 @@ gulp.task('scripts', ['clean-dist'], () => {
         .pipe(gulp.dest('./dist'));
 });
 
+// TODO: we will replace the above scripts with this...
+gulp.task('transpilejs', () => {
+  return gulp
+          .src('src/sripts/main.js')
+          .pipe(babel())
+          // lets dump it in a special dir for now,
+          // just to be sure we know whats getting made.
+          .pipe(
+            gulp.dest('dist')
+          );
+});
 
-gulp.task('default', ['sass', 'scripts']);
+
+// gulp.task('default', ['sass', 'scripts']);
