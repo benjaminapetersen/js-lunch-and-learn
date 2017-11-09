@@ -1,0 +1,15 @@
+{
+  "name": "gulp-angularJS",
+  "version": "0.0.1",
+  "description": "A simple project setup with gulp,yarn and angularJS (angular 1.x)",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.3.0",
+    "todomvc-app-css": "^2.1.0"
+  }
+}
