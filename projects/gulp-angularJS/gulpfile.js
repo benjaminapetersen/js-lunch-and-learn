@@ -33,7 +33,10 @@ gulp.task('inject:app', () => {
     }
   );
   return target
-          .pipe(inject(sources, { ignorePath: 'src' }))
+          .pipe(inject(sources, {
+            ignorePath: 'src',
+            name: 'app' 
+          }))
           // hmm, its a bit scary to write over top of our source
           // file, but it appears that this is what is expected
           // for this plugin.  ok then!
@@ -50,13 +53,12 @@ gulp.task('inject:vendor', () => {
       './node_modules/angular/angular.js',
       './node_modules/todomvc-app-css/index.css'
     ], {
-      read: false,
-      //cwd: __dirname + '/src'
+      read: false
     }
   );
   return target
           .pipe(inject(sources, {
-            //ignorePath: 'src',
+            ignorePath: 'src',
             name: 'vendor'
           }))
           .pipe(gulp.dest('./src'));

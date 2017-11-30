@@ -207,14 +207,19 @@ our actual app!
     find angular, lodash, and our css & inject them into the
     html file. Be sure to run `gulp serve` and see if the files
     load in the browser!
-2.  Update our `serve:src` task to automatically run both
+1.  Update our `serve:src` task to automatically run both
     `inject:vendor` and `inject:app` so that we automatically
     rebuild the application whenever we serve it.
-3.  Clean up the `gulpfile.js` file.  If there is any duplication,
+1.  You will probably notice that our `index.html` file is correct,
+    but we are not actually serving any of our vendor files form the
+    `node_modules` folder!  Our app will not work if the browser cannot
+    receive these files.  Update our `serve:src` task to serve
+    these files to the browser.
+1.  Clean up the `gulpfile.js` file.  If there is any duplication,
     use some variables to remove it.  For example, the PATHS
     can easily be factored out.  Its possible to share the
     `target` index.html file as well, and maybe some other paths.
     Keep it DRY.
-4.  If you get this far, see if you can get `browserSync` to
+1.  If you get this far, see if you can get `browserSync` to
     live-reload whenver any of our `./src` app files change. This
     is also well-documented.
