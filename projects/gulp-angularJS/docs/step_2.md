@@ -25,8 +25,12 @@ gulp.task('index', () => {
     read: false
   })
   return target
+          // it is the job of `gulp-inject` to fix the problem
+          // of writing the correct path in our index.html file.
+          // so we will tell it to inject the sources, but ignore 
+          // the leading /src path
           .pipe(inject(sources, { ignorePath: 'src' }))
-          .pipe(gul.dest('./src'));
+          .pipe(gulp.dest('./src'));
 });
 ```
 There are a handful of ways to do this, however, and we may find
