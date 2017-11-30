@@ -22,11 +22,11 @@ gulp.task('index', () => {
     '/path/to/*.js',
     '/path/to/*.css'
   ], {
-    read: false,
-    // aha! this should do the trick...
-    cwd: __dirname : '/src'
+    read: false
   })
-  // rest of task omitted......
+  return target
+          .pipe(inject(sources, { ignorePath: 'src' }))
+          .pipe(gul.dest('./src'));
 });
 ```
 There are a handful of ways to do this, however, and we may find
