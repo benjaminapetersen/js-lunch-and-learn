@@ -7,9 +7,15 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.6",
+    "lodash": "^4.17.4",
+    "todomvc-app-css": "^2.1.0"
+  },
+  "devDependencies": {
     "browser-sync": "^2.18.13",
     "gulp": "^3.9.1",
-    "gulp-inject": "^4.3.0",
-    "todomvc-app-css": "^2.1.0"
+    "gulp-inject": "^4.3.0"
+  },
+  "scripts": {
+    "serve": "gulp"
   }
 }
