@@ -22,12 +22,13 @@ gulp.task('index', () => {
     '/path/to/*.js',
     '/path/to/*.css'
   ], {
-    read: false
+    read: false,
+    cwd: __dirname + '/src'
   })
   return target
           // it is the job of `gulp-inject` to fix the problem
           // of writing the correct path in our index.html file.
-          // so we will tell it to inject the sources, but ignore 
+          // so we will tell it to inject the sources, but ignore
           // the leading /src path
           .pipe(inject(sources, { ignorePath: 'src' }))
           .pipe(gulp.dest('./src'));
