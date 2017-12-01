@@ -1,22 +1,22 @@
-'use strict'
+'use strict';
 
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const inject = require('gulp-inject');
 
-// TODO: refactor the tasks below to use this!
-// const PATHS = {
-//   base: './',
-//   src: './src'
-// }
+const PATHS = {
+   base: './',
+   src: './src',
+   deps: './node_modules'
+};
 
-gulp.task('hello', [], () => {
-  console.log('Hello world.');
-});
+const FILES = {
+  index: `${PATHS.src}/index.html`
+};
 
 
 gulp.task('inject:app', () => {
-  let target = gulp.src('./src/index.html');
+  let target = gulp.src(FILES.index);
   // lets start with an array of one glob, that way its
   // easy to add more later
   let sources = gulp.src(
@@ -35,23 +35,23 @@ gulp.task('inject:app', () => {
   return target
           .pipe(inject(sources, {
             ignorePath: 'src',
-            name: 'app' 
+            name: 'app'
           }))
           // hmm, its a bit scary to write over top of our source
           // file, but it appears that this is what is expected
           // for this plugin.  ok then!
-          .pipe(gulp.dest('./src'));
+          .pipe(gulp.dest(PATHS.src));
 
 });
 
 gulp.task('inject:vendor', () => {
-  let target = gulp.src('./src/index.html');
+  let target = gulp.src(FILES.index);
   let sources = gulp.src(
     // our vendor files from node_modules
     [
-      './node_modules/lodash/lodash.js',
-      './node_modules/angular/angular.js',
-      './node_modules/todomvc-app-css/index.css'
+      `${PATHS.deps}/lodash/lodash.js`,
+      `${PATHS.deps}/angular/angular.js`,
+      `${PATHS.deps}/todomvc-app-css/index.css`,
     ], {
       read: false
     }
@@ -61,20 +61,22 @@ gulp.task('inject:vendor', () => {
             ignorePath: 'src',
             name: 'vendor'
           }))
-          .pipe(gulp.dest('./src'));
+          .pipe(gulp.dest(PATHS.src));
 });
 
 
 gulp.task('serve:src', ['inject:app', 'inject:vendor'], () => {
     browserSync.init({
         server: {
-            baseDir: "./src"
+            baseDir: PATHS.src
         }
     });
 });
 
+gulp.task('inject', ['inject:vendor', 'inject:app']);
+
 // alias, because we will forget the specific
-gulp.task('serve', ['serve:src']);
+gulp.task('serve', ['serve:src', 'inject']);
 
 // always good to have a default
 gulp.task('default', ['serve']);
