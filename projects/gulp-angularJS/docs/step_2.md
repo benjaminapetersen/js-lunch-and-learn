@@ -192,6 +192,37 @@ gulp inject:vendor
 [11:40:45] Finished 'inject:vendor' after 45 ms
 ```
 
+Your `index.html` file should look something like this if it has
+all of the injection points for our `vendor` JS & CSS and our
+`app` JS & CSS:
+
+```html
+<!DOCTYPE html>
+<html ng-app="todoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+
+    <!-- vendor:css -->
+    <!-- endinject -->
+
+    <!-- app:css -->
+    <!-- endinject -->
+  </head>
+  <body>
+    <h1>Hello World</h1>
+
+    <div class="hello">Hello?</div>
+
+    <!-- vendor:js -->
+    <!-- endinject -->
+
+    <!-- app:js -->
+    <!-- endinject -->
+  </body>
+</html>
+```
+
 The assignment for next week is to again solve the `src` problem
 and figure out how to get `gulp-inject` to find the files and
 correctly insert them into the index.html page.  The best starting
