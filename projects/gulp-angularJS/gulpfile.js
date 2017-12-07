@@ -14,6 +14,12 @@ const FILES = {
   index: `${PATHS.src}/index.html`
 };
 
+const IGNORE = {
+  src: 'src',
+  deps: 'node_modules'
+};
+
+
 
 gulp.task('inject:app', () => {
   let target = gulp.src(FILES.index);
@@ -29,12 +35,12 @@ gulp.task('inject:app', () => {
     // of any of these files.  we only care about their locations!
     {
       read: false,
-      cwd: __dirname + '/src'
+      cwd: __dirname + PATHS.src
     }
   );
   return target
           .pipe(inject(sources, {
-            ignorePath: 'src',
+            ignorePath: IGNORE.src,
             name: 'app'
           }))
           // hmm, its a bit scary to write over top of our source
@@ -58,24 +64,24 @@ gulp.task('inject:vendor', () => {
   );
   return target
           .pipe(inject(sources, {
-            ignorePath: 'src',
+            ignorePath: IGNORE.deps,
             name: 'vendor'
           }))
           .pipe(gulp.dest(PATHS.src));
 });
 
+gulp.task('inject', ['inject:vendor', 'inject:app']);
 
 gulp.task('serve:src', ['inject:app', 'inject:vendor'], () => {
     browserSync.init({
         server: {
-            baseDir: PATHS.src
+            baseDir: [PATHS.src, PATHS.deps]
         }
     });
 });
 
-gulp.task('inject', ['inject:vendor', 'inject:app']);
-
-// alias, because we will forget the specific
+// alias, because we will have to serve:src or serve:dist, and
+// can default to source
 gulp.task('serve', ['serve:src', 'inject']);
 
 // always good to have a default
