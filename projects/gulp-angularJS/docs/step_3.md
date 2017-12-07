@@ -180,7 +180,7 @@ Now we need to create the `<todo-list>` component so that
 we can generate something on the page.
 
 ```JavaScript
-// src/components/todos/todoList.component.js
+// src/components/todos/todo-list/todoList.component.js
 'use strict';
 
 // we include this first part because we are always
