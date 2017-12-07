@@ -127,7 +127,20 @@ it as the application.  This is done with the `ng-app` directive.
 <html ng-app="todoApp">
 ```
 
-If you update this & refresh your page, you should see a
+There is one more magical directive that is needed.  Add the following:
+
+```html
+<body>
+  <!--
+    Whenever a route changes, angular will render
+    everything new within the <ng-view> on the page.
+    If this directive doesn't exist, angular will do nothing.
+  -->
+  <div ng-view></div>
+</body>
+```
+
+Now, if you update this & refresh your page, you should see a
 console full of red errors. This is because we have chosen
 to use `ngRoute` without installing the dependency.  So
 lets add that.
