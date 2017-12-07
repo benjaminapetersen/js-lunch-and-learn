@@ -20,7 +20,6 @@ const IGNORE = {
 };
 
 
-
 gulp.task('inject:app', () => {
   let target = gulp.src(FILES.index);
   // lets start with an array of one glob, that way its
@@ -28,14 +27,15 @@ gulp.task('inject:app', () => {
   let sources = gulp.src(
     // glob to recursively look through all components folder for JS
     [
-      './components/**/*.js',
-      './components/**/*.css'
+      `${PATHS.src}/app.module.js`,
+      `${PATHS.src}/app.routes.js`,
+      `${PATHS.src}/components/**/*.js`,
+      `${PATHS.src}/components/**/*.css`
     ],
     // this is nifty. gulp doesn't actually have to read the contents
     // of any of these files.  we only care about their locations!
     {
-      read: false,
-      cwd: __dirname + PATHS.src
+      read: false
     }
   );
   return target
@@ -57,6 +57,7 @@ gulp.task('inject:vendor', () => {
     [
       `${PATHS.deps}/lodash/lodash.js`,
       `${PATHS.deps}/angular/angular.js`,
+      `${PATHS.deps}/angular-route/angular-route.js`,
       `${PATHS.deps}/todomvc-app-css/index.css`,
     ], {
       read: false
