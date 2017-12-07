@@ -77,7 +77,9 @@ gulp.task('serve:src', ['inject:app', 'inject:vendor'], () => {
     browserSync.init({
         server: {
             baseDir: [PATHS.src, PATHS.deps]
-        }
+        },
+        // watch /src
+        files: PATHS.src
     });
 });
 
