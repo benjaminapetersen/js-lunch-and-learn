@@ -279,16 +279,22 @@ angular
 
 <!--
 TODO:
-- look at "what next" from step_1.md.  more or less:
-- add build for sass, js
-- ensure inject works for /src with all the individual files
-  - gulp-inject will do this
-  - the 'name' option will allow us to use named injection points
-    for vendor, etc
-- ensure inject works for /dist after we build/minify
-- ensure we can serve both /src and /dist so that we can verify
-  everything works as expected, both before and after minification!
-  - either with a /dev and a /dist prefix
-  - OR using ports: 3000 and 3001
-    - ports may be easier, path manipulation is always a tad messy
+- eventually build sass/less for our css (if we need it)
+- add a transpiler for es6 to es5?
+- build the dist & provide a `serve` task so we can
+  optionally serve either `src` or `dist` (or both).
+  - dist should include minification/concatenation
+  - can use localhost:3000, localhost:3001 or
+    localhost:3000/dev localhost:3000/dist
+
+APPLICATION
+- store todos in local storage
+- implement new, update, delete todos
+- implement nested todos
+- implement filtering of todos
+  - could add create date, due date, etc.
+- consider using a mongo db or something more persistent
+- add some kind of login logic so we can store user specific todos
+  - could be simple to just ask for a username
+  - could actually use google/fb
 -->
