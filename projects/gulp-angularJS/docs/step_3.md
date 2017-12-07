@@ -170,7 +170,7 @@ Finally, we need to decide what to do in our `/todos` route.
 Since we are going component based, we are simply going to
 load a template, which will instantiate a component.  Update it to look like this:
 
-``JavaScript
+```JavaScript
 .when('/todos', {
   template: '<todo-list></todo-list>'
 })
