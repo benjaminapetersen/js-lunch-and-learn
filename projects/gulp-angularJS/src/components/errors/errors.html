@@ -1,0 +1,10 @@
+<div ng-if="$ctrl.errors">
+  <div>
+    <strong>Oh, Snap!</strong>
+  </div>
+  <div
+    ng-repeat="error in $ctrl.errors"
+    style="color: red; font-size: bold;">
+    {{error}}
+  </div>
+</div>

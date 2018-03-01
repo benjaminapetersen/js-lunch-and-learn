@@ -12,7 +12,8 @@ angular
         redirectTo: 'todos'
       })
       .when('/todos', {
-        template: '<todo-list></todo-list>'
+        //template: '<todo-list></todo-list>',
+        template: '<todo-page></todo-page>'
       })
       .otherwise({
         redirectTo: 'todos'
