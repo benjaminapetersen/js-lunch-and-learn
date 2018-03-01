@@ -17,6 +17,7 @@
     "gulp-inject": "^4.3.0"
   },
   "scripts": {
-    "serve": "gulp"
+    "serve": "gulp",
+    "start": "gulp"
   }
 }

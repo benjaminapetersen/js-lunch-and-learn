@@ -1,4 +1,4 @@
-# Step 3:  Coming Soon
+# Step 3:  The App: Routes & A Page
 
 
 ## A Little Housekeeping
@@ -270,7 +270,7 @@ angular
 
     ```JavaScript
     .when('/todos', {
-      template: '<todo-list todos="$resolve.todos"></todos-list',
+      template: '<todo-list todos="$resolve.todos"></todos-list>',
       resolve: {
         todos: () => { return []; }
       }

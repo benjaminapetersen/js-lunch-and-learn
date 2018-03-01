@@ -1,3 +1,6 @@
 <ul>
-  <li>say hi</li>
+
+  <li ng-repeat="todo in $ctrl.todos">
+    {{todo.text}}
+  </li>
 </ul>

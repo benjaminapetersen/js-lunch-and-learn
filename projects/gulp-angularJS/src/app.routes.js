@@ -5,6 +5,7 @@
 // routes within components that own the route.
 angular
   .module('todoApp')
+  // config lets you configure the app before it runs.
   .config(($routeProvider) => {
     $routeProvider
       .when('/', {

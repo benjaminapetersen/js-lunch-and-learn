@@ -2,6 +2,8 @@
   "esversion": 6,
   "globals": {
     "require": true,
-    "__dirname": true
+    "__dirname": true,
+    "angular": true,
+    "console": true
   }
 }
