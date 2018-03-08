@@ -11,6 +11,13 @@ angular
       function($http, locations) {
         let $ctrl = this;
 
+        $ctrl.onNewTodo = function(item) {
+          console.log('page', item);
+        };
+
+        // is there a way to ensure
+        // this runs when we initialize
+        // this component?
         $http
           .get(locations.todos)
           // test a wrong path.
@@ -26,4 +33,6 @@ angular
             }
           );
       }]
+
+
   });

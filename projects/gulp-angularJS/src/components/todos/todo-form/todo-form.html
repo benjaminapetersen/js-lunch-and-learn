@@ -1,0 +1,20 @@
+<!--
+  TODO: why does the onSubmit function
+  not receive the item as an argument?
+-->
+<form
+  ng-submit="$ctrl.onSubmit($ctrl.newTodo)">
+
+  <input
+    type="text"
+    name=""
+    value=""
+    placeholder="hi"
+    ng-model="$ctrl.newTodo.text">
+
+  <input
+    type="submit"
+    name="Add"
+    value="Add">
+
+</form>

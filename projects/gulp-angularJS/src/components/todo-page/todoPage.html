@@ -1,6 +1,12 @@
 <div>
   <h1>Todos</h1>
 
-  <todo-list todos="$ctrl.todos"></todo-list>
-  <errors errors="$ctrl.errors"></errors>
+  <todo-form
+    on-submit="$ctrl.onNewTodo(item)"></todo-form>
+
+  <todo-list
+    todos="$ctrl.todos"></todo-list>
+
+  <errors
+    errors="$ctrl.errors"></errors>
 </div>
