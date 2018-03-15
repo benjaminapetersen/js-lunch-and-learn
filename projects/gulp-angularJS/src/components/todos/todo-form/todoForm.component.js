@@ -14,9 +14,9 @@ angular
         text: ''
       };
 
-      // $ctrl.submit = function(e) {
-      //   console.log('form', $ctrl.newTodo);
-      //   $ctrl.onSubmit($ctrl.newTodo);
-      // }
+      $ctrl.submit = function(e) {
+        console.log('form', $ctrl.newTodo);
+        $ctrl.onSubmit($ctrl.newTodo);
+      }
     }
   });

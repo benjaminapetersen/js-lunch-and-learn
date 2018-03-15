@@ -15,24 +15,21 @@ angular
           console.log('page', item);
         };
 
-        // is there a way to ensure
-        // this runs when we initialize
-        // this component?
-        $http
-          .get(locations.todos)
-          // test a wrong path.
-          //.get('foo/bar/baz')
-          .then(
-            (resp) => {
-              $ctrl.todos = resp.data;
-            },
-            (err) => {
-              $ctrl.errors = [
-                err.data
-              ];
-            }
-          );
+        $ctrl.$onInit = function() {
+          console.log('initialize....');
+          $http
+            .get(locations.todos)
+            // test a wrong path.
+            //.get('foo/bar/baz')
+            .then(
+              (resp) => {
+                $ctrl.todos = resp.data;
+              },
+              (err) => {
+                $ctrl.errors = [
+                  err.data
+                ];
+              });
+        }
       }]
-
-
   });
