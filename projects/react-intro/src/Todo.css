@@ -1,0 +1,4 @@
+.todo.complete {
+  color: #84e88d;
+  text-decoration: line-through;
+}
