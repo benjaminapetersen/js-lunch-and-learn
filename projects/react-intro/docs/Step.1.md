@@ -182,10 +182,10 @@ class MyComponent extends Component {
     // and the element's children
     //
     // simple:
-    return element('div', null, 'This is text in the div.');
+    // return element('div', null, 'This is text in the div.');
     //
     // slightly less simple:
-    return element('div', null, element('p', null, 'This is text in the p'));
+    // return element('div', null, element('p', null, 'This is text in the p'));
     //
     // more complex:
     return element('div', null,
@@ -227,9 +227,24 @@ class MyComponent extends Component {
 And we can actually reduce this further, if we want to:
 
 ```JavaScript
-const MyComponent = () {
+const MyComponent = () => {
   return <div>Hi, mom.</div>
 }
 // so we can just use a function, if we want?  Yups. React will
 // take its return value as render.
 ```
+
+The last thing we will do this week is rename our component (if we are
+going to keep it).  The above `non-jsx` component can be named `NonJSX`:
+
+```JavaScript
+// old:
+// class MyComponent extends Component { }
+// new:
+class NonJSX extends Component { }
+```
+
+And be sure to update your `App.js` file to fix the imports!
+
+Next week, we will get into the basics of a Todo list & compare to our
+Angular version from `projects/gulp-angularJS`.

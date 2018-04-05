@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-//   import TodoList from './TodoList';
-import Foo from './Foo';
+
+// we need to add this:
+import TodoList from './components/TodoList';
+
+// import NonJSX from './components/NonJSX/NonJSX';
 
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -16,13 +20,14 @@ class App extends Component {
         <p className="App-intro">
           Hello World.
         </p>
-        
-        <Foo />
-    
+        {/*
+          <NonJSX />
+        */}
+        <TodoList />
+
       </div>
     );
   }
 }
 
 export default App;
-

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Todo.css';
+import './index.css';
 
 // we can also inline the export:
 export default class Todo extends Component {
@@ -11,8 +11,8 @@ export default class Todo extends Component {
     const isDone = complete ? '[x]' : '[ ]';
     return (
       <li
-        className={ 'todo ' + (complete ? 'complete' : '') } 
-        id={'todo-' + id }>
+        className={ 'todo ' + (complete ? 'complete' : '') }
+        id={`todo-${id}`}>
         {text} {isDone}
       </li>
     );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 const elem = React.createElement;
 
-class Foo extends Component {
+class NonJSX extends Component {
   render() {
     // <div class="container">
     //   <h1>Foo!</h1>
@@ -19,8 +19,8 @@ class Foo extends Component {
     // </div>
     return (
       elem('div', null,
-        elem('h1', null, 'Foo!'),
-        elem('h2', null, 'Bar'),
+        elem('h1', null, 'Non JSX!'),
+        elem('h2', null, 'manually make elements'),
         elem('ul', null,
           elem('li', null,
             elem('a', {href: '#'}, 'Click me! '),
@@ -32,4 +32,4 @@ class Foo extends Component {
   }
 }
 
-export default Foo;
+export default NonJSX;

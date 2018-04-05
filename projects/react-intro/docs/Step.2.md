@@ -1,5 +1,9 @@
+# Building Components
 
-Now, lets all have a moment of silence and remember Angular's directive syntax:
+## Comparison to AngularJS
+
+Now, lets all have a moment of silence and remember Angular's directive
+syntax:
 
 ```JavaScript
 angular
@@ -27,10 +31,13 @@ angular
   // doesn't do anything.  An Angular Component is less painful, but
   // still looks pretty similar.   
   // In addition, the glyphs used to define scope are just not memorable.
+  // scope {} needing <,>,&,?, etc. confuses just about everyone.
   //
   // Having said all that, Angular did have it's day, and it did move
   // us forward, so I probably shouldn't be so hard on it. :)
 ```
+
+## TodoList Component
 
 Lets go with our tradition of making a todo list:
 
@@ -48,7 +55,7 @@ import React, { Component } from 'react';
 
 class TodoList extends Component {
   render() {
-    // why the semicolons?  Cuz then we can balance our <div></div>
+    // why the parens by the return?  Cuz then we can balance our <div></div>
     // and not worry about JavaScripts automatic semicolon injection
     // causing our render method to return NOTHING.
     return (
@@ -68,6 +75,17 @@ The convention of the parens in the `return`:
       </div>
   }
 ```
+
+You can also:
+
+```JavaScript
+return () {
+  return <div>
+   stuff....
+  </div> // yuk. this is not balanced.
+}
+```
+
 
 Ok, back to a list:
 
@@ -92,6 +110,34 @@ class TodoList extends Component {
 ```
 
 Ok, so we have a hard-coded list.  How can we make this dynamic?
+
+There are a couple ways:
+
+```JavaScript
+render() {
+  const todos = ['Do this', 'Do that', 'Do other things'];
+  const elems = todos.map((todo) => { <li>{ todo }</li> });
+  return (
+    <ul>  
+      { todos.map((todo) => {
+        <li>{todo}</li>
+      }) }
+    </ul>
+  )  
+}
+```
+
+or
+
+```JavaScript
+render() {
+  const todos = ['Do this', 'Do that', 'Do other things'];
+  const elems = todos.map((todo) => { <li>{ todo }</li> });
+  return (
+    <ul> {elems} </ul>
+  )  
+}
+```
 
 ```JavaScript
 import React, { Component } from 'react';
@@ -118,6 +164,8 @@ class TodoList extends Component {
 export default TodoList;
 ```
 
+# Props:  how to pass information to your components
+
 While we are at it, lets make a `Todo` component:
 
 ```JavaScript
@@ -132,7 +180,9 @@ export default class Todo extends Component {
     // a hacky checkbox
     const isDone = complete ? '[x]' : '[ ]';
     return (
-      <li key={id}>{text} {isDone}</li>
+      <li
+        id={`todo-${id}`}
+        key={id}>{text} {isDone}</li>
     );
   }
 }
@@ -267,15 +317,38 @@ import './Todo.css';
 
 // then update our render to conditionally apply the `complete` class:
 render() {
-  //
   return (
     <li
-      className={ 'todo ' + (complete ? 'complete' : '') }
-      id={'todo-' + id }>
-      {text} {isDone}
+      id={`todo-${id}`}
+      className={`todo ${isCompleteClass}`}>
+      { text } {isDone}
     </li>
   );
 }
 ```
 
 If done correctly, you should have at least one green todo with a strikethrough. Woot.
+
+Alternatively, we can do inline styles instead of
+importing the CSS from an external file:
+
+
+```JavaScript
+import React, {Component} from 'react';
+
+export default class Todo extends Component {
+  render() {
+    var styles = {
+      color: complete ? '#84e88d' : '',
+      textDecoration: complete ? 'line-through' : ''
+    };
+    return (
+      <li
+        id={`todo-${id}`}
+        className={`todo ${isCompleteClass}`}>
+        { text } {isDone}
+      </li>
+    );
+  }
+}
+```
