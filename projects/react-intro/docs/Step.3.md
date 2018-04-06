@@ -401,12 +401,28 @@ our component can output new HTML.
 render() {
   const { error, isLoaded, todos } = this.state; // destructure
   return (
-    if(error) {
-      return <div>Error: {error.message}</div>
-    } else if(!isLoaded) {
-      return <div>Loading....</div>
-    } else {
-      return <TodoList todos={todos} />
+    // header, app-logo, etc
+
+    // valid *expressions* can be used in JSX syntax.
+    // a simple way to think about an expression is this:
+    // - an expression returns a value.
+    // so:
+    // { variableName }  works, it will print a value
+    // { foo ? 'Yay' : 'Sadness' } works, it also returns a value
+    // if statements & other controls don't work, they don't
+    // return a value.  However, using &&, ||, etc will work 
+    { isLoaded ? (
+       <TodoList
+         title="Things to do"
+         todos={ todos } />
+    ) : (
+      <div>Booo</div>
+    )}
+    { error
+      &&
+        <div>Bad: {error.message}</div>
+      ||
+        <div>Good: no errors</div>
     }
   );
 }
@@ -443,6 +459,11 @@ Up next! Lets make the todo items interactive with a working form.
 
 
 <!--
-Step.4.md = forms, or more lifecycle from https://reactjs.org/docs/state-and-lifecycle.html
-
+Step.4.md
+  - swap axios for fetch, fetch is annoying maybe?
+  - make working checkboxes w/callbacks
+  - consider adding the timer component from
+     - https://reactjs.org/docs/state-and-lifecycle.html
+     just to work out a bit more with setState()
+  - press forward to flux/redux
 -->

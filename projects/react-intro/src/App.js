@@ -5,12 +5,41 @@ import './App.css';
 // we need to add this:
 import TodoList from './components/TodoList';
 
-// import NonJSX from './components/NonJSX/NonJSX';
-
-
 class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        isLoaded: false,
+        error: null,
+        todos: []
+      };
+  }
+
+  componentDidMount() {
+    // fetch is a future browser standard
+    // for making http requests
+    fetch('_mock_/todos.json')
+      // time passes....
+      .then((response) => {
+        return response.json();
+      })
+      // time passes...
+      .then((result) => {
+        this.setState({
+          isLoaded: true,
+          todos: result
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          isLoaded: true,
+          error: err
+        });
+      });
+  }
 
   render() {
+    const {isLoaded, todos, error} = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -20,11 +49,19 @@ class App extends Component {
         <p className="App-intro">
           Hello World.
         </p>
-        {/*
-          <NonJSX />
-        */}
-        <TodoList />
-
+        { isLoaded ? (
+           <TodoList
+             title="Things to do"
+             todos={ todos } />
+        ) : (
+          <div>Booo</div>
+        )}
+        { error
+          &&
+            <div>Bad: {error.message}</div>
+          ||
+            <div>Good: no errors</div>
+        }
       </div>
     );
   }
