@@ -33,6 +33,19 @@ export default class TodoForm extends Component {
 }
 ```
 
+Now, to ensure we can see our changes, lets be
+sure to import it to our `App.js` component and
+render it out right away:
+
+
+```JavaScript
+import TodoForm from './components/TodoForm';
+
+// and update render:
+<TodoForm />
+```
+
+
 I tend to encourage working from what you know.  So, you probably know
 that you need some HTML next.  Therefore, implement a `render()` function:
 
