@@ -5,6 +5,21 @@ import './App.css';
 // we need to add this:
 import TodoList from './components/TodoList';
 
+
+class TodoForm extends Component {
+  render() {
+    return (
+      <form>
+        <label>
+          Todo:
+          <input type="text" value="New Todo" placeholder="New Todo" />
+        </label>
+      </form>
+    );
+  }
+}
+
+
 class App extends Component {
   constructor(props) {
       super(props);
@@ -50,9 +65,13 @@ class App extends Component {
           Hello World.
         </p>
         { isLoaded ? (
-           <TodoList
-             title="Things to do"
-             todos={ todos } />
+           <div>
+             <TodoList
+               title="Things to do"
+               todos={ todos } />
+
+             <TodoForm />
+           </div>
         ) : (
           <div>Booo</div>
         )}
