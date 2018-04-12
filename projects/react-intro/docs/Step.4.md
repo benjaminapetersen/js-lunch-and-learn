@@ -288,3 +288,12 @@ How should we go about doing this?
 
 I'll push the solution soon, but give it a spin and see if you can use
 your existing toolset to figure out how to accomplish this goal!
+
+
+<!--
+  Notes for next steps:
+  https://reactjs.org/docs/lifting-state-up.html
+  review/reinforce the idea of lifting state up
+  to the highest shared parent component, at least
+  before jumping into something like Flux/Redux
+-->
