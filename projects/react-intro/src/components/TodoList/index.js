@@ -4,19 +4,26 @@ import './index.css';
 
 class TodoList extends Component {
   render() {
-    const { todos, title } = this.props;
+    const { 
+      todos, 
+      title,
+      onToggleTodo 
+    } = this.props;
 
     const elems = todos.map((todo, i) => {
-      return <Todo key={i} {...todo}  />
+      return <Todo 
+              key={i} 
+              {...todo}  
+              onToggleTodo={onToggleTodo}/>
     });
 
     return (
-      <div className="todo-panel">
+      <React.Fragment>
         <h3>{title || 'Todos'}</h3>
         <ul className="todo-list">
           { elems }
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -113,9 +113,28 @@ constructor(props) {
 }
 ```
 
-The key is to remember that the `this` keyword depends on how a function is
+Why?  Because React is deliberately being "not magical".  Our classes are
+pure JavaScript classes, and this strange behavior is vanilla JavaScript
+behavior.
+
+Lets compare:
+
+In classical languages like `Ruby`, `Java`, etc, `this` will always point
+to the object where your method was *defined*.  This is intuitive, but
+less flexible.  JavaScript is extremely flexible.  In JavaScript, `this`
+will point at the object context where your function was *called*.
+
+Want some more reading on this?  [Give this post a shot](http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/).  This will cover the difference between the *method invocation pattern* and
+the *function invocation pattern*.
+
+React previously had a `React.createClass()` function that did some automatic
+binding for you behind the scenes, making JavaScript classes act a bit more
+like classes in other languages.  But, this is magic, and React wants you
+comfortable with vanilla JavaScript.  So the method has been deprecated.
+
+So the key is to remember that the `this` keyword depends on how a function is
 called, not on how it was created.  React is relying on plain old JavaScript
-here, which to many is a good thing.  
+here, which to many is a good thing (and to many is terrible).  
 
 If our `<TodoForm>` grows, and we eventually pass `this.handleSubmit()` to
 a child component, the `this` will refer to that child component, and it will
@@ -180,10 +199,11 @@ update the `state`.  Remember, we are doing this to ensure that React is
 the source of truth (of the state of our app):
 
 ```JavaScript
+const {text} = this.state.todo;  // todo.text
 <input
   type="text"
   // set th value to this.state.value
-  value={this.state.value}
+  value={text}
   // and we better have a function to handle changes
   // as the user types:
   onChange={this.handleChange} />
@@ -237,18 +257,30 @@ so we will need to update our `constructor()` `this.state` as well as
 any of our existing `setState()` functions to use a `todo {}` object:
 
 ```JavaScript
+const {text} = this.state.todo;
+
 <input
   type="text"
   name="text"
   // set th value to this.state.value
-  value={this.state.value}
+  value={text}
   // and we better have a function to handle changes
   // as the user types:
   onChange={this.handleChange} />
 ```
 
-Ok, now we can update our `handleChange` and ensure it pays attemtion to
+Ok, now we can update our `handleChange` and ensure it pays attention to
 the `name`:
+
+
+<!---
+TODO: continue from here! -------------------------------
+TODO: continue from here! -------------------------------
+TODO: continue from here! -------------------------------
+TODO: continue from here! -------------------------------
+TODO: continue from here! -------------------------------
+TODO: continue from here! -------------------------------
+---->
 
 
 ```JavaScript

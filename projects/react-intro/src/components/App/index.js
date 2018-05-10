@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../../logo.svg';
 import './App.css';
 
-// we need to add this:
-import TodoList from './components/TodoList';
+import TodoList from '../TodoList';
+import TodoForm from '../TodoForm';
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +13,8 @@ class App extends Component {
         error: null,
         todos: []
       };
+      this.newTodo = this.newTodo.bind(this);
+      this.toggleTodo = this.toggleTodo.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,24 @@ class App extends Component {
       });
   }
 
+  newTodo(todo) {
+    console.log(`new todo: ${todo.text}`);
+    this.setState({
+      todos: [...this.state.todos, todo]
+    });
+  }
+
+  toggleTodo(id) {
+    console.log(`Toggle Complete: ${id}`);
+    // TODO:
+    // - need to toggle the todo...
+    // - can we find the correct todo by 
+    //   the id that we passed? yes.
+    //   - this.state.todos.find()
+    // - update? or copy?
+    // - render out the list again....
+  }
+
   render() {
     const {isLoaded, todos, error} = this.state;
     return (
@@ -50,20 +70,19 @@ class App extends Component {
           Hello World.
         </p>
         { isLoaded ? (
-           <div>
+           <div className="todo-panel">
              <TodoList
                title="Things to do"
-               todos={ todos } />
+               todos={ todos }
+               onToggleTodo={this.toggleTodo} />
+             <TodoForm
+              onNewTodo={this.newTodo} />
            </div>
         ) : (
-          <div>Booo</div>
+          <div>Loading....</div>
         )}
-        { error
-          &&
-            <div>Bad: {error.message}</div>
-          ||
-            <div>Good: no errors</div>
-        }
+
+        { error && <div>{error.message}</div> }
       </div>
     );
   }
