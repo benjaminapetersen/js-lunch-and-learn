@@ -48,16 +48,19 @@ class App extends Component {
   }
 
   toggleTodo(id) {
-    console.log(`Toggle Complete: ${id}`);
-    // TODO:
-    // - need to toggle the todo...
-    // - can we find the correct todo by 
-    //   the id that we passed? yes.
-    //   - this.state.todos.find()
-    // - update? or copy?
-    // - render out the list again....
-  }
-
+    // copy of old todos
+    let newTodos = [...this.state.todos];
+    newTodos.find((todo, i) => {
+      if(todo.id === id) {
+        todo.complete = !todo.complete;
+        return true;
+      }
+    });
+    this.setState({
+      todos: newTodos
+    });
+  }  
+  
   render() {
     const {isLoaded, todos, error} = this.state;
     return (

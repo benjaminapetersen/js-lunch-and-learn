@@ -144,4 +144,54 @@ FUTURE:
 use express.js so we can CRUD
   be sure to include a reset() if we
   mess up our todos
+
+ADDITIONAL IDEAS:
+- look at TODO list apps like rememberthemilk.com for some additional features
+- createdAt timestamp
+- dueAt timestamp
+- filter out "complete" into separate list
+- multiple lists / list creation
+- additional sidebar filtering:
+  - lists list in the sidebar for toggling lists / all
+  - incomplete, complete, overdue filters in sidebar
+  - sort functions in sidebar: name, priority, created, due, etc
+  - tags in sidebar, for even more sorting/filtering/organization 
+    - technically, implement lists as a tag, but prefix with +list+:<name>, 
+      just don't show the +list+: prefix, for best flexibility(?) just 
+      needs to be a string that is not common/allowed for standard users to 
+      actually create.
+  
+TODO LIST APP 
+===========================================
+[] list 1                     | lists
+   [] item 1 <due>            |  - list 1 (12 items)
+   [] item 2 <due>            |  - list 2 (15 items)
+   [] item 3 <due>            |
+     optional description     |  
+   - complete -               | Status
+   [x] item 4 (done)          |  - incomplete (12 items)
+                              |  - complete (6 items)
+[] list 1                     |  - overdue (8 items)
+   [] item 1 <due>            | 
+   [] item 2 <due>            | Tags
+   [] item 3 <due>            |  - home
+                              |  - work
+                              |  - foo
+                              |  - bar                                                            
 -->
+
+// lists
+[{
+  name: "List 1",
+  todos: [{
+    id: '',
+    complete: '',
+    title: '',
+    description: '',
+    createAt: '',
+    dueAt: '',
+    tags: ['foo', 'bar', 'baz']
+  }] 
+}, {
+
+}]

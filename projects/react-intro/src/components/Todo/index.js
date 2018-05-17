@@ -9,7 +9,8 @@ export default class Todo extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    event.preventDefault();
+    // note: do not event.preventDefault() here. this is a checkbox. there is 
+    // nothing wrong with this event.
     const {onToggleTodo} = this.props;
     onToggleTodo(this.props.id);
   }
@@ -22,6 +23,8 @@ export default class Todo extends Component {
       onToggleTodo 
     } = this.props;
     
+    console.log(`todo: ${id} is complete? ${complete}`);
+
     return (
       <li
         className={ 'todo ' + (complete ? 'complete' : '') }
