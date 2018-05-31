@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TodoItems from '../todo-items/TodoItems';
+
 class TodoList extends Component {
   render() {
     return (
@@ -24,38 +26,10 @@ class TodoList extends Component {
           </button>
         </div>
 
-        <ol className="list-group todo__list no-bullet">
-          <li className="todo__item">
-            <div className="input-group input-group-lg">
-              <input className="todo__item--important todo__item__toggle form-control" value="Eat bananas" />
-              <span className="input-group-btn">
-                <button className="todo__item__star--active btn btn-default"><i className="fa fa-star"></i></button>
-                <button className="todo__item__remove btn btn-default"><i className="fa fa-times"></i></button>
-              </span>
-            </div>
-          </li>
-          <li className="todo__item">
-            <div className="input-group input-group-lg">
-              <input type="text" className="todo__item__toggle form-control" value="Make todo list" />
-              <span className="input-group-btn">
-                <button className="todo__item__star btn btn-default"><i className="fa fa-star"></i></button>
-                <button className="todo__item__remove btn btn-default" type="button"><i className="fa fa-times"></i></button>
-              </span>
-            </div>
-          </li>
-          <li className="todo__item">
-            <div className="input-group input-group-lg">
-              <input className="todo__item__toggle todo__item__toggle--completed form-control" value="Climb Mt. Everest" />
-              <span className="input-group-btn">
-                <button className="todo__item__star btn btn-default"><i className="fa fa-star"></i></button>
-                <button className="todo__item__remove btn btn-default"><i className="fa fa-times"></i></button>
-              </span>
-            </div>
-          </li>
-        </ol>
+        <TodoItems items={this.props.items}/>
       </section>
-    )
-  }
-}
+    );
+  };
+};
 
 export default TodoList;
