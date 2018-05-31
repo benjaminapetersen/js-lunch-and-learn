@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "3",
-    "bulma": "^0.7.1",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/react-fontawesome": "^0.0.20",
+    "bootstrap": "^4.1.1",
+    "font-awesome": "^4.7.0",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
-  },
-  "devDependencies": {
+    "react-dom": "^16.4.0",
     "react-scripts": "1.1.4"
   },
   "scripts": {

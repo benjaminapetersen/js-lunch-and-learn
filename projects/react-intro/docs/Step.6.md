@@ -163,17 +163,17 @@ ADDITIONAL IDEAS:
   
 TODO LIST APP 
 ===========================================
-[] list 1                     | lists
+[] list 1                     | lists (filter)
    [] item 1 <due>            |  - list 1 (12 items)
    [] item 2 <due>            |  - list 2 (15 items)
    [] item 3 <due>            |
      optional description     |  
-   - complete -               | Status
+   - complete -               | Status (filter)
    [x] item 4 (done)          |  - incomplete (12 items)
                               |  - complete (6 items)
 [] list 1                     |  - overdue (8 items)
    [] item 1 <due>            | 
-   [] item 2 <due>            | Tags
+   [] item 2 <due>            | Tags (filter)
    [] item 3 <due>            |  - home
                               |  - work
                               |  - foo
