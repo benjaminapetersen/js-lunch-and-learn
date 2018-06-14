@@ -17,7 +17,7 @@ const mockTodoItems = [
   {
     text: 'Climb Mt. Everest',
     starred: false,
-    complete: HTMLSourceElement,
+    complete: true,
   },
 ];
 
