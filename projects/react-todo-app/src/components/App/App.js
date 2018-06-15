@@ -41,7 +41,7 @@ class App extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-8">
-            <TodoList items={mockTodoItems} />
+            <TodoList items={mockTodoItems} title="Todo List" />
           </div>
           <div className="col-sm-4">
             <Tasks items={tasks} title="App functionality to build"/>
