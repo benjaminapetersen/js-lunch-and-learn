@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import TodoItems from '../todo-item/TodoItem';
+import TodoItems from '../todo-items/TodoItems';
 import Toolbar from '../toolbar/Toolbar';
 import TodoForm from '../todo-form/TodoForm';
 
@@ -10,9 +9,7 @@ class TodoList extends Component {
     return (
       <section className="todos">
         <h1>{title || "Default Title"}</h1>
-
         <TodoForm />
-
         <Toolbar />
         <TodoItems items={items} />
       </section>
