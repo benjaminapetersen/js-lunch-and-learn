@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoList from '../todo-list/TodoList';
 import Tasks from '../tasks/Tasks';
+import Axios from '../../../node_modules/axios'
 
 const mockTodoItems = [
   {
@@ -36,12 +37,37 @@ const tasks = [
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: []
+    }
+  }
+
+  componentDidMount() {
+    Axios
+      .get('config.json')
+      .then(configResp => configResp.data)
+      .then(config => {
+        console.log('firebase?', config.firebase);
+        Axios
+          .get(`${config.firebase.url}/todoItems.json`)
+          .then(firebaseResp => {
+            console.log('firebase?', firebaseResp.data);
+            this.setState({
+              todos: firebaseResp.data
+            })
+          });
+      });
+  }
+
   render() {
+    const {todos} = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-8">
-            <TodoList items={mockTodoItems} title="Todo List" />
+            <TodoList items={todos} title="Todo List" />
           </div>
           <div className="col-sm-4">
             <Tasks items={tasks} title="App functionality to build"/>
