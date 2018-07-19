@@ -56,6 +56,9 @@ aside ol {
 .todo__item__remove .fa {
   color: #d9534f;
 }
+.todo__item__complete .fa {
+  color: #54d94f;
+}
 .todo__item__star--active .fa {
   color: #46b8da;
 }

@@ -1,26 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import TodoList from '../todo-list/TodoList';
 import Tasks from '../tasks/Tasks';
-import Axios from '../../../node_modules/axios'
-
-const mockTodoItems = [
-  {
-    text: 'Eat bananas',
-    starred: true,
-    complete: false,
-  },
-  {
-    text: 'Make todo list',
-    starred: false,
-    complete: false,
-  },
-  {
-    text: 'Climb Mt. Everest',
-    starred: false,
-    complete: true,
-  },
-];
 
 const tasks = [
   'Add item',
@@ -43,26 +25,30 @@ class App extends Component {
       todos: []
     }
   }
-
   componentDidMount() {
-    Axios
+    axios
       .get('config.json')
       .then(configResp => configResp.data)
       .then(config => {
-        console.log('firebase?', config.firebase);
-        Axios
+        console.log('config:', config);
+        axios
           .get(`${config.firebase.url}/todoItems.json`)
           .then(firebaseResp => {
-            console.log('firebase?', firebaseResp.data);
+            console.log('items:', firebaseResp.data);
             this.setState({
               todos: firebaseResp.data
-            })
+            });
+          });
+        axios
+          .get(`${config.firebase.url}/todoLists.json`)
+          .then(firebaseResp => {
+            console.log('lists:', firebaseResp.data);
+            // I want to sort my items into lists
           });
       });
   }
-
   render() {
-    const {todos} = this.state;
+    const { todos } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -70,7 +56,7 @@ class App extends Component {
             <TodoList items={todos} title="Todo List" />
           </div>
           <div className="col-sm-4">
-            <Tasks items={tasks} title="App functionality to build"/>
+            <Tasks items={tasks} title="App functionality to build" />
           </div>
         </div>
       </div>
