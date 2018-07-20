@@ -26,13 +26,18 @@ class App extends Component {
     }
   }
   componentDidMount() {
+    this.requestToken = axios.CancelToken.source().token;
     axios
-      .get('config.json')
+      .get('config.json', {
+        cancelToken: this.requestToken
+      })
       .then(configResp => configResp.data)
       .then(config => {
         console.log('config:', config);
         axios
-          .get(`${config.firebase.url}/todoItems.json`)
+          .get(`${config.firebase.url}/todoItems.json`, {
+            cancelToken: this.requestToken
+          })
           .then(firebaseResp => {
             console.log('items:', firebaseResp.data);
             this.setState({
@@ -40,12 +45,17 @@ class App extends Component {
             });
           });
         axios
-          .get(`${config.firebase.url}/todoLists.json`)
+          .get(`${config.firebase.url}/todoLists.json`, {
+            cancelToken: this.requestToken
+          })
           .then(firebaseResp => {
             console.log('lists:', firebaseResp.data);
             // I want to sort my items into lists
           });
       });
+  }
+  componentWillUnmount() {
+    this.requestToken.cancel('App destroyed, cancelling requests.');
   }
   render() {
     const { todos } = this.state;

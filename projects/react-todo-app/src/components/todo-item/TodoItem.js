@@ -9,6 +9,7 @@ class TodoItem extends Component {
     this.handleComplete = this.handleComplete.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleTextUpdate = this.handleTextUpdate.bind(this);
   }
   handleComplete(e) {
     // e.target.value 
@@ -21,6 +22,10 @@ class TodoItem extends Component {
   handleDelete(e) {
     // e.target.value 
     console.log(`clicked: ${this.props.item.text} is deleted? need a prop?`);
+  }
+  handleTextUpdate(e) {
+    // e.target.value 
+    console.log(`typed: ${this.props.item.text}, can update?`);
   }
   render() {
     const {item} = this.props;
@@ -36,6 +41,7 @@ class TodoItem extends Component {
           </span>
           <input 
             type="text" 
+            onChange={this.handleTextUpdate}
             className={`todo__item__toggle form-control ${item.complete && 'todo__item__toggle--completed'}`} 
             defaultValue={item.text} />
           <span className="input-group-btn">
