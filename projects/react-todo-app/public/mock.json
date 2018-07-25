@@ -1,11 +1,10 @@
 {
-  "todoLists": [
-    { "id": 1, "title": "Misc" },
-    { "id": 2, "title": "Crazy Stuff" }
-  ],
-  "todoItems": [
-    {
-      "id": 1,
+  "todoLists": {
+    "__seed__1": { "title": "Misc" },
+    "__seed__2": { "title": "Crazy Stuff" }
+  },
+  "todoItems": {
+    "__seed__1": {
       "text": "Eat bananas",
       "description": "Bananas are good for you, might as well eat some.",
       "starred": true,
@@ -15,8 +14,7 @@
         {"id": 1}
       ]
     },
-    {
-      "id": 2,
+    "__seed__2": {
       "text": "Make todo list",
       "description": "Neat, we are doing this now",
       "starred": true,
@@ -26,8 +24,7 @@
         {"id": 1}
       ]
     },
-    {
-      "id": 3,
+    "__seed__3": {
       "text": "Climb Mt. Everest",
       "description": "Probably nope, but maybe we need a separate list for these kind of unlikely things.",
       "starred": false,
@@ -37,8 +34,7 @@
         {"id": 2}
       ]
     },
-    {
-      "id": 4,
+    "__seed__4": {
       "text": "Go skydiving",
       "description": "Why not, sounds fun.",
       "starred": false,
@@ -48,8 +44,7 @@
         {"id": 2}
       ]
     },
-    {
-      "id": 5,
+    "__seed__5": {
       "text": "Eat a live squid",
       "description": "Gross... but, YouTube.",
       "starred": false,
@@ -59,5 +54,5 @@
         {"id": 1}
       ]
     }
-  ]
+  }
 }

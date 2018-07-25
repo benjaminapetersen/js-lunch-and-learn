@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = { // only directly set state in constructor
       todo: {
-        text: "",
+        text: '',
         complete: false,
+        starred: false,
+        deleted: false,
+        description: '',
+        // lists?
       }
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     this.setState({ // let react update state for us
@@ -20,20 +26,40 @@ class TodoForm extends Component {
     })
     console.log("I changed", event.target.value, this.state.todo);
   }
+  handleSubmit(event) {
+    const {config} = this.props;
+    const {todo} = this.state;
+    event.preventDefault();
+    axios
+      // todo: we just duplicated the path! booo.....
+      .post(`${config.firebase.url}/todoItems.json`, todo)
+      .then((resp) => {
+        // TODO: what to do next?
+        // 1. clear out the input since we saved it.
+        // 2. somehow relist the todos in the todo list
+        console.log('Well, did it work?', resp);
+      }, (err) => {
+        console.log('Yikes! nope', err);
+      });
+  }
   render() {
     const {text, complete} = this.state.todo; // destructuring 
 
     return (
-      <div className="todo__new form-group input-group input-group-lg">
-        <input value={text} 
-          type="text" 
-          onChange={this.handleChange} 
-          placeholder="New todo" 
-          className="todo__item--new form-control"></input>
-        <span className="input-group-btn">
-          <button className="btn btn-primary"><i className="fa fa-plus"></i>
-          </button></span>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <div className="todo__new form-group input-group input-group-lg">
+          <input value={text} 
+            type="text" 
+            onChange={this.handleChange} 
+            placeholder="New todo" 
+            className="todo__item--new form-control"></input>
+          <span className="input-group-btn">
+            <button className="btn btn-primary">
+              <i className="fa fa-plus"></i>
+            </button>
+          </span>
+        </div>
+      </form>
     );
   }
 }

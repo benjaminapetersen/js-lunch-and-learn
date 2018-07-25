@@ -5,11 +5,11 @@ import TodoForm from '../todo-form/TodoForm';
 
 class TodoList extends Component {
   render() {
-    const {title, items} = this.props;
+    const {config,items,title} = this.props;
     return (
       <section className="todos">
         <h1>{title || "Default Title"}</h1>
-        <TodoForm />
+        <TodoForm config={config} />
         <Toolbar />
         <TodoItems items={items} />
       </section>
