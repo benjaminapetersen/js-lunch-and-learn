@@ -31,8 +31,9 @@ class TodoForm extends Component {
     const {todo} = this.state;
     event.preventDefault();
     axios
-      // todo: we just duplicated the path! booo.....
-      .post(`${config.firebase.url}/todoItems.json`, todo)
+      // POST means send new data to the server
+      .post(`${config.jsonServer.url}/todos`, todo)
+      // THEN... what?
       .then((resp) => {
         // TODO: what to do next?
         // 1. clear out the input since we saved it.

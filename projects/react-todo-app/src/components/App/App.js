@@ -36,7 +36,7 @@ class App extends Component {
         console.log('config:', config);
         this.setState({ config });
         axios
-          .get(`${config.firebase.url}/todoItems.json`, {
+          .get(`${config.jsonServer.url}/todos`, {
             cancelToken: this.requestToken
           })
           .then(firebaseResp => {

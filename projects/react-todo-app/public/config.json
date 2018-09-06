@@ -1,0 +1,9 @@
+{
+    "firebase": {
+        "url": "super secret"
+    },
+    "jsonServer": {
+        "url": "http://localhost:3001"
+    }
+}
+

@@ -1,58 +1,43 @@
 {
-  "todoLists": {
-    "__seed__1": { "title": "Misc" },
-    "__seed__2": { "title": "Crazy Stuff" }
-  },
-  "todoItems": {
-    "__seed__1": {
+  "lists": [
+    {
+      "id": 1,
+      "title": "Misc"
+    },
+    {
+      "id": 2,
+      "title": "Crazy Stuff"
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
       "text": "Eat bananas",
       "description": "Bananas are good for you, might as well eat some.",
       "starred": true,
       "complete": false,
       "deleted": false,
       "lists": [
-        {"id": 1}
+        {
+          "id": 1
+        }
       ]
     },
-    "__seed__2": {
-      "text": "Make todo list",
-      "description": "Neat, we are doing this now",
-      "starred": true,
-      "complete": true,
-      "deleted": false,
-      "lists": [
-        {"id": 1}
-      ]
-    },
-    "__seed__3": {
-      "text": "Climb Mt. Everest",
-      "description": "Probably nope, but maybe we need a separate list for these kind of unlikely things.",
+    {
+      "text": "Stuff and things",
+      "complete": false,
       "starred": false,
-      "complete": true,
       "deleted": false,
-      "lists": [
-        {"id": 2}
-      ]
+      "description": "",
+      "id": 2
     },
-    "__seed__4": {
-      "text": "Go skydiving",
-      "description": "Why not, sounds fun.",
+    {
+      "text": "Another thing to do",
+      "complete": false,
       "starred": false,
-      "complete": true,
       "deleted": false,
-      "lists": [
-        {"id": 2}
-      ]
-    },
-    "__seed__5": {
-      "text": "Eat a live squid",
-      "description": "Gross... but, YouTube.",
-      "starred": false,
-      "complete": true,
-      "deleted": true,
-      "lists": [
-        {"id": 1}
-      ]
+      "description": "",
+      "id": 3
     }
-  }
+  ]
 }
