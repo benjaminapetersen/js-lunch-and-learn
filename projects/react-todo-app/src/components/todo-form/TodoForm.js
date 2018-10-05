@@ -4,15 +4,10 @@ import axios from 'axios';
 class TodoForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { // only directly set state in constructor
+    this.state = { 
       todo: {
-        text: '',
-        complete: false,
-        starred: false,
-        deleted: false,
-        description: '',
-        // lists?
-      }
+        text: ''
+      } 
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,22 +18,21 @@ class TodoForm extends Component {
         ...this.state.todo, // spread operator
         text: event.target.value // get/set input value
       }
-    })
+    });
     console.log("I changed", event.target.value, this.state.todo);
   }
   handleSubmit(event) {
     const {config} = this.props;
     const {todo} = this.state;
+    todo.created = Date.now();
     event.preventDefault();
     axios
-      // POST means send new data to the server
       .post(`${config.jsonServer.url}/todos`, todo)
-      // THEN... what?
       .then((resp) => {
-        // TODO: what to do next?
-        // 1. clear out the input since we saved it.
-        // 2. somehow relist the todos in the todo list
-        console.log('Well, did it work?', resp);
+            this.props.loadTodos();
+            this.setState({ 
+              todo: { text: '' }
+            });
       }, (err) => {
         console.log('Yikes! nope', err);
       });

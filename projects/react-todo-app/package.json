@@ -15,6 +15,7 @@
   },
   "scripts": {
     "serve": "$(yarn bin)/json-server --watch mock.json --port 3001",
+    "server": "yarn serve",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

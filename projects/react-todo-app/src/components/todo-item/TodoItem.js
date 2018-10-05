@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // TODO: defaultValue means the text will not update later when 
 // we implement the ability to edit todo items.  We will need 
@@ -12,16 +13,30 @@ class TodoItem extends Component {
     this.handleTextUpdate = this.handleTextUpdate.bind(this);
   }
   handleComplete(e) {
-    // e.target.value 
     console.log(`clicked: ${this.props.item.text} is complete? ${this.props.item.complete}`);
+    let {config} = this.props;
+    var todo = {...this.props.item};
+
+    console.log('CONFIG? ', this.props);
+
+    todo.complete = !todo.complete;
+    axios
+      .put(`${config.jsonServer.url}/todos/${todo.id}`, todo)
+      .then(() => {
+      this.props.loadTodos();
+    })
   }
   handleFavorite(e) {
     // e.target.value 
     console.log(`clicked: ${this.props.item.text} is starred?  ${this.props.item.starred}`);
+    var todo = this.props.item;
+    todo.favorite = true;
   }
   handleDelete(e) {
     // e.target.value 
     console.log(`clicked: ${this.props.item.text} is deleted? need a prop?`);
+    var todo = this.props.item;
+    todo.deleted = true;
   }
   handleTextUpdate(e) {
     // e.target.value 
