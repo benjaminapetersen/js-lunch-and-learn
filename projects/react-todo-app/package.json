@@ -14,7 +14,7 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "json-server": "$(yarn bin)/json-server --watch public/mock.json --port 3001",
+    "serve": "$(yarn bin)/json-server --watch mock.json --port 3001",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

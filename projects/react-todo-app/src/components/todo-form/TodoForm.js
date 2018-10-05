@@ -42,10 +42,10 @@ class TodoForm extends Component {
       }, (err) => {
         console.log('Yikes! nope', err);
       });
+    return null;
   }
   render() {
     const {text, complete} = this.state.todo; // destructuring 
-
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="todo__new form-group input-group input-group-lg">
@@ -55,7 +55,11 @@ class TodoForm extends Component {
             placeholder="New todo" 
             className="todo__item--new form-control"></input>
           <span className="input-group-btn">
-            <button className="btn btn-primary">
+            <button
+              type="button"
+              value="submit"
+              className="btn btn-primary"
+              onClick={this.handleSubmit}>
               <i className="fa fa-plus"></i>
             </button>
           </span>
