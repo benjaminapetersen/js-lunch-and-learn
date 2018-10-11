@@ -1,9 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// TODO: defaultValue means the text will not update later when 
-// we implement the ability to edit todo items.  We will need 
-// to revisit this.
+// Things todo:
+// - clean up App functionality to build list
+//   - we have built some of this.  
+// - deduplication of axios!
+//   - we should refactor our code to eliminate all the duplication 
+//     of axios methods.  Remember, axios.put,axios.delete are all 
+//     alias functions for using axios({method: ''}).  We can use
+//     either the generic axios() function, or we can use array 
+//     syntax axios['method']() to accoplish our refactor.  A method 
+//     like request() {}  would be good to add to our todo items
+// - deduplication of url building!
+//   - we make our url over and over:
+//     `${config.jsonServer.url}/todos/${todo.id}`
+//     even in other components.
+//     how can we ensure the details of url building are done in 
+//     one place in our app?  Perhaps we want src/utils/ in our source
+//     code, and we want to define a urls.js file that can hold 
+//     the specifics of url building?
+// - filter button counts.
+//   - at this point, we do have completed/not completed. 
+//     we should update the counts next to these buttons.
+// - filter buttons
+//   - only completed
+//   - only incomplete
+//   - all (no button currently, but gotta be able to reset!)
+// - clear completed button
+//   - this button can 'delete' all the completed todos 
+// - clear all
+//   - this button can 'delete' all of our todos
+// - undo!
+//   - oops, deleted all... should it REALLY delete all? dang.
+// - error handling
+//   - what if something happens and our UI shows a todo that no 
+//     longer exists.  clicking ANY button will 404 error, but we 
+//     are not showing the user errors.  We should.
+// - sorting?
+//   - should we be able to reorder todos based on importance?
+// - create additional lists
+//   - now that our lists function well, what if we want to organize
+//     items into multiple lists? 
 class TodoItem extends Component {
   constructor(props) {
     super(props);
@@ -16,27 +53,35 @@ class TodoItem extends Component {
     console.log(`clicked: ${this.props.item.text} is complete? ${this.props.item.complete}`);
     let {config} = this.props;
     var todo = {...this.props.item};
-
-    console.log('CONFIG? ', this.props);
-
     todo.complete = !todo.complete;
     axios
       .put(`${config.jsonServer.url}/todos/${todo.id}`, todo)
       .then(() => {
       this.props.loadTodos();
-    })
+    });
   }
   handleFavorite(e) {
-    // e.target.value 
     console.log(`clicked: ${this.props.item.text} is starred?  ${this.props.item.starred}`);
-    var todo = this.props.item;
-    todo.favorite = true;
+    let {config} = this.props;
+    const todo = {...this.props.item};
+    todo.starred = !todo.starred;
+    axios
+      .put(`${config.jsonServer.url}/todos/${todo.id}`, todo)
+      .then(() => {
+      this.props.loadTodos();
+    });
   }
   handleDelete(e) {
-    // e.target.value 
     console.log(`clicked: ${this.props.item.text} is deleted? need a prop?`);
-    var todo = this.props.item;
-    todo.deleted = true;
+    const {
+      config,
+      todo: { id }
+    } = this.props;
+    axios
+      .delete(`${config.jsonServer.url}/todos/${id}`)
+      .then(() => {
+      this.props.loadTodos();
+    });
   }
   handleTextUpdate(e) {
     // e.target.value 

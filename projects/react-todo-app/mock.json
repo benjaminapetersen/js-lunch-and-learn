@@ -14,17 +14,34 @@
   ],
   "todos": [
     {
-      "id": 1,
-      "text": "Eat bananas",
-      "description": "Bananas are good for you, might as well eat some.",
-      "starred": true,
-      "complete": false,
-      "deleted": false,
-      "lists": [
-        {
-          "id": 1
-        }
-      ]
+      "text": "Hello world",
+      "created": 1539284336688,
+      "id": 3,
+      "complete": true
+    },
+    {
+      "text": "test",
+      "created": 1539284425230,
+      "id": 5,
+      "starred": true
+    },
+    {
+      "text": "stuff and things",
+      "created": 1539284864982,
+      "id": 7
+    },
+    {
+      "text": "fdsafdsafdsa",
+      "created": 1539284905386,
+      "id": 8,
+      "favorite": true,
+      "complete": true,
+      "starred": true
+    },
+    {
+      "text": "fdsafdsafdsa",
+      "created": 1539284908139,
+      "id": 9
     }
   ]
 }
