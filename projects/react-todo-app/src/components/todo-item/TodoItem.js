@@ -44,44 +44,38 @@ import axios from 'axios';
 class TodoItem extends Component {
   constructor(props) {
     super(props);
+    this.url = `${this.props.config.jsonServer.url}/todos/${this.props.item.id}`
     this.handleComplete = this.handleComplete.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleTextUpdate = this.handleTextUpdate.bind(this);
   }
+  request(method, data) {
+    axios({
+      method: method,
+      url: this.url,
+      data: data
+    })
+    .then(() => {
+      this.props.loadTodos();
+    }, () => {
+      // error?
+    });
+  }
   handleComplete(e) {
-    console.log(`clicked: ${this.props.item.text} is complete? ${this.props.item.complete}`);
     let {config} = this.props;
     var todo = {...this.props.item};
     todo.complete = !todo.complete;
-    axios
-      .put(`${config.jsonServer.url}/todos/${todo.id}`, todo)
-      .then(() => {
-      this.props.loadTodos();
-    });
+    this.request('put', todo);
   }
   handleFavorite(e) {
-    console.log(`clicked: ${this.props.item.text} is starred?  ${this.props.item.starred}`);
     let {config} = this.props;
     const todo = {...this.props.item};
     todo.starred = !todo.starred;
-    axios
-      .put(`${config.jsonServer.url}/todos/${todo.id}`, todo)
-      .then(() => {
-      this.props.loadTodos();
-    });
+    this.request('put', todo);
   }
   handleDelete(e) {
-    console.log(`clicked: ${this.props.item.text} is deleted? need a prop?`);
-    const {
-      config,
-      todo: { id }
-    } = this.props;
-    axios
-      .delete(`${config.jsonServer.url}/todos/${id}`)
-      .then(() => {
-      this.props.loadTodos();
-    });
+    this.request('delete');
   }
   handleTextUpdate(e) {
     // e.target.value 
