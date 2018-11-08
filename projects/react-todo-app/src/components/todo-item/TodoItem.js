@@ -77,9 +77,11 @@ class TodoItem extends Component {
   handleDelete(e) {
     this.request('delete');
   }
+  // TODO: handle debouced key up instead of blur but this is a good quick win.
   handleTextUpdate(e) {
-    // e.target.value 
-    console.log(`typed: ${this.props.item.text}, can update?`);
+    const todo = {...this.props.item}
+    todo.text = e.target.value;
+    this.request('put', todo);
   }
   render() {
     const {item} = this.props;
@@ -95,7 +97,7 @@ class TodoItem extends Component {
           </span>
           <input 
             type="text" 
-            onChange={this.handleTextUpdate}
+            onBlur={this.handleTextUpdate}
             className={`todo__item__toggle form-control ${item.complete && 'todo__item__toggle--completed'}`} 
             defaultValue={item.text} />
           <span className="input-group-btn">

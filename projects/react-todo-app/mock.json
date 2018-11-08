@@ -20,7 +20,7 @@
       "complete": true
     },
     {
-      "text": "test",
+      "text": "test that things work",
       "created": 1539284425230,
       "id": 5,
       "starred": true
@@ -31,12 +31,9 @@
       "id": 7
     },
     {
-      "text": "fdsafdsafdsa",
-      "created": 1539284905386,
-      "id": 8,
-      "favorite": true,
-      "complete": true,
-      "starred": true
+      "text": "Go do a nifty thing",
+      "created": 1541704716202,
+      "id": 8
     }
   ]
 }

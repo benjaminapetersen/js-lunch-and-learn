@@ -10,7 +10,7 @@ class TodoList extends Component {
       <section className="todos">
         <h1>{title || "Default Title"}</h1>
         <TodoForm config={config} loadTodos={loadTodos} />
-        <Toolbar />
+        <Toolbar items={items} />
         <TodoItems config={config} items={items} loadTodos={loadTodos} />
       </section>
     );
