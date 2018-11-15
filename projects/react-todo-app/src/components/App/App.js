@@ -25,6 +25,7 @@ class App extends Component {
       todos: []
     }
     this.loadTodos = this.loadTodos.bind(this);
+    this.filterNotComplete = this.filterNotComplete.bind(this);
    }
   loadTodos() {
     axios
@@ -44,6 +45,9 @@ class App extends Component {
         });
     });
   }
+  filterNotComplete() {
+    console.log("These are not complete! APP.js");
+  }
   componentDidMount() {
     this.loadTodos();  
   }
@@ -60,6 +64,7 @@ class App extends Component {
               items={todos} 
               config={config}
               loadTodos={this.loadTodos} 
+              filterNotComplete={this.filterNotComplete}
               title="Todo List" />
           </div>
           <div className="col-sm-4">

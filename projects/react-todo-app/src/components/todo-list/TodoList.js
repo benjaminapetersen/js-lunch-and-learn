@@ -5,12 +5,20 @@ import TodoForm from '../todo-form/TodoForm';
 
 class TodoList extends Component {
   render() {
-    const {config, items, title, loadTodos} = this.props;
+    const {
+      config, 
+      items, 
+      title, 
+      loadTodos,
+      filterNotComplete
+    } = this.props;
     return (
       <section className="todos">
         <h1>{title || "Default Title"}</h1>
         <TodoForm config={config} loadTodos={loadTodos} />
-        <Toolbar items={items} />
+        <Toolbar 
+          items={items} 
+          filterNotComplete={filterNotComplete} />
         <TodoItems config={config} items={items} loadTodos={loadTodos} />
       </section>
     );
